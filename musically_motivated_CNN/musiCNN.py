@@ -44,7 +44,7 @@ def batch_data(audio_file, n_frames, overlap):
     return batch, audio_rep
 
 
-def predict(file_name, model='MTT', in_length=3, in_overlap=None, features=None):
+def predict(file_name, model='MTT', input_length=3, input_overlap=None, features=False):
 
     # select model
     if model == 'MTT':
@@ -54,17 +54,17 @@ def predict(file_name, model='MTT', in_length=3, in_overlap=None, features=None)
     num_classes = len(labels)
 
     # convert seconds to frames
-    n_frames = librosa.time_to_frames(in_length, sr=config.SR, n_fft=config.FFT_SIZE, hop_length=config.FFT_HOP) + 1
-    if not in_overlap:
+    n_frames = librosa.time_to_frames(input_length, sr=config.SR, n_fft=config.FFT_SIZE, hop_length=config.FFT_HOP) + 1
+    if not input_overlap:
         overlap = n_frames
     else:
-        overlap = librosa.time_to_frames(in_overlap, sr=config.SR, n_fft=config.FFT_SIZE, hop_length=config.FFT_HOP)
+        overlap = librosa.time_to_frames(input_overlap, sr=config.SR, n_fft=config.FFT_SIZE, hop_length=config.FFT_HOP)
 
     # tensorflow: define the model
     with tf.name_scope('model'):
         x = tf.placeholder(tf.float32, [None, n_frames, config.N_MELS])
         is_training = tf.placeholder(tf.bool)
-        y, summarized_features, features = models.define_models(x, is_training, model, num_classes)
+        y, timbral, temporal, midend1, midend2, midend3, avg_pool, max_pool, backend = models.define_models(x, is_training, model, num_classes)
         normalized_y = tf.nn.sigmoid(y)
 
     # tensorflow: loading model
@@ -79,20 +79,19 @@ def predict(file_name, model='MTT', in_length=3, in_overlap=None, features=None)
 
     # tensorflow: extract features and tags
     # ..first batch!
-    predicted_tags, patch_embedding, tmp_emb = sess.run([normalized_y, summarized_features, features], 
+    out = sess.run([normalized_y, timbral, temporal, midend1, midend2, midend3, avg_pool, max_pool, backend], 
                                                                feed_dict={x: batch[:config.BATCH_SIZE], 
                                                                is_training: False})
+    predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = out
     taggram = np.array(predicted_tags)
-    full_embedding = np.squeeze(tmp_emb)
 
     # ..rest of the batches!
     for id_pointer in tqdm(range(config.BATCH_SIZE, batch.shape[0], config.BATCH_SIZE)):
-        predicted_tags, tmp_downsampled_emb, tmp_emb = sess.run([normalized_y, summarized_features, features], 
+        out = sess.run([normalized_y, timbral, temporal, midend1, midend2, midend3, avg_pool, max_pool, backend], 
                                                                  feed_dict={x: batch[id_pointer:id_pointer+config.BATCH_SIZE], 
                                                                  is_training: False})
+        predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = out
         taggram = np.concatenate((taggram, np.array(predicted_tags)), axis=0)
-        patch_embedding = np.concatenate((patch_embedding, tmp_downsampled_emb), axis=0)
-        full_embedding = np.concatenate((full_embedding, np.squeeze(tmp_emb)), axis=0)
 
     return taggram, labels#, patch_embedding, full_embedding, np.float32(spectrogram)
 
