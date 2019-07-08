@@ -1,9 +1,7 @@
-import numpy as np
-
-from absl import logging
-logging._warn_preinit_stderr = 0
+#from absl import logging
+#logging._warn_preinit_stderr = 0
 import tensorflow as tf
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+#tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 import configuration as config
 
@@ -145,9 +143,12 @@ def backend(front_end_features, is_training, num_classes, num_filt, output_units
     logits, backend, max_pool, avg_pool = temporal_pool(dense_connection, is_training, num_classes, output_units, type)
 
     # [extract features] temporal and timbral features from the front-end
-    timbral, temporal = tf.concat(front_end_features, 2), tf.concat(front_end_features, 2)
+    timbral = tf.concat([front_end_features[0], front_end_features[1]], 2)
+    temporal = tf.concat([front_end_features[2], front_end_features[3], front_end_features[4]], 2)
     # [extract features] mid-end features
     midend1, midend2, midend3 = mid_end_features[1], mid_end_features[2], mid_end_features[3]
+    max_pool = tf.squeeze(max_pool, [2])
+    avg_pool = tf.squeeze(avg_pool, [2])
 
     return logits, timbral, temporal, midend1, midend2, midend3, avg_pool, max_pool, backend
 

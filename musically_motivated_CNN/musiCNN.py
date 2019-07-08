@@ -3,10 +3,10 @@ import librosa
 from tqdm import tqdm
 
 # disabling uncomfortable warnings
-from absl import logging
-logging._warn_preinit_stderr = 0
+#from absl import logging
+#logging._warn_preinit_stderr = 0
 import tensorflow as tf
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+#tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 # setting the path
 import sys
@@ -44,7 +44,7 @@ def batch_data(audio_file, n_frames, overlap):
     return batch, audio_rep
 
 
-def predict(file_name, model='MTT', input_length=3, input_overlap=None, features=False):
+def predict(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False):
 
     # select model
     if model == 'MTT':
@@ -79,20 +79,58 @@ def predict(file_name, model='MTT', input_length=3, input_overlap=None, features
 
     # tensorflow: extract features and tags
     # ..first batch!
-    out = sess.run([normalized_y, timbral, temporal, midend1, midend2, midend3, avg_pool, max_pool, backend], 
-                                                               feed_dict={x: batch[:config.BATCH_SIZE], 
-                                                               is_training: False})
-    predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = out
+    if extract_features:
+        extract_vector = [normalized_y, timbral, temporal, midend1, midend2, midend3, avg_pool, max_pool, backend]
+    else:
+        extract_vector = [normalized_y]
+
+    tf_out = sess.run(extract_vector, 
+                   feed_dict={x: batch[:config.BATCH_SIZE], 
+                   is_training: False})
+
+    if extract_features:
+        predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = tf_out
+        features = dict()
+        features['timbral'] = np.squeeze(timbral_)
+        features['temporal'] = np.squeeze(temporal_)
+        features['midend1'] = np.squeeze(midend1_)
+        features['midend2'] = np.squeeze(midend2_)
+        features['midend3'] = np.squeeze(midend3_)
+        features['avg_pool'] = avg_pool_
+        features['max_pool'] = max_pool_
+        features['backend'] = backend_
+    else:
+        predicted_tags = tf_out[0]
+
     taggram = np.array(predicted_tags)
+
 
     # ..rest of the batches!
     for id_pointer in tqdm(range(config.BATCH_SIZE, batch.shape[0], config.BATCH_SIZE)):
-        out = sess.run([normalized_y, timbral, temporal, midend1, midend2, midend3, avg_pool, max_pool, backend], 
-                                                                 feed_dict={x: batch[id_pointer:id_pointer+config.BATCH_SIZE], 
-                                                                 is_training: False})
-        predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = out
+
+        tf_out = sess.run(extract_vector, 
+                          feed_dict={x: batch[id_pointer:id_pointer+config.BATCH_SIZE], 
+                           is_training: False})
+
+        if extract_features:
+            predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = tf_out
+            features['timbral'] = np.concatenate((features['timbral'], np.squeeze(timbral_)), axis=0)
+            features['temporal'] = np.concatenate((features['temporal'], np.squeeze(temporal_)), axis=0)
+            features['midend1'] = np.concatenate((features['midend1'], np.squeeze(midend1_)), axis=0)
+            features['midend2'] = np.concatenate((features['midend2'], np.squeeze(midend2_)), axis=0)
+            features['midend3'] = np.concatenate((features['midend3'], np.squeeze(midend3_)), axis=0)
+            features['avg_pool'] = np.concatenate((features['avg_pool'], avg_pool_), axis=0)
+            features['max_pool'] = np.concatenate((features['max_pool'], max_pool_), axis=0)
+            features['backend'] = np.concatenate((features['backend'], backend_), axis=0)
+        else:
+            predicted_tags = tf_out[0]
+
         taggram = np.concatenate((taggram, np.array(predicted_tags)), axis=0)
 
-    return taggram, labels#, patch_embedding, full_embedding, np.float32(spectrogram)
+    if extract_features:
+        return taggram, labels, features
+    else:
+        return taggram, labels
+
 
 
