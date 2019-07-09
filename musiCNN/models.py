@@ -1,9 +1,8 @@
-#from absl import logging
-#logging._warn_preinit_stderr = 0
 import tensorflow as tf
-#tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
+from musiCNN import configuration as config
 
-import configuration as config
+# disabling deprecation warnings (caused by change from tensorflow 1.x to 2.x)
+tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 
 def define_models(x, is_training, model, num_classes):
@@ -43,7 +42,7 @@ def define_models(x, is_training, model, num_classes):
 def frontend(x, is_training, yInput, num_filt, type):
 
     expand_input = tf.expand_dims(x, 3)
-    normalized_input = tf.layers.batch_normalization(expand_input, training=is_training)
+    normalized_input = tf.compat.v1.layers.batch_normalization(expand_input, training=is_training)
 
     if 'timbral' in type:
 
@@ -94,33 +93,29 @@ def frontend(x, is_training, yInput, num_filt, type):
 
 
 
-def timbral_block(inputs, filters, kernel_size, is_training, padding="valid", activation=tf.nn.relu,
-                  kernel_initializer=tf.contrib.layers.variance_scaling_initializer()):
+def timbral_block(inputs, filters, kernel_size, is_training, padding="valid", activation=tf.nn.relu):
 
-    conv = tf.layers.conv2d(inputs=inputs,
+    conv = tf.compat.v1.layers.conv2d(inputs=inputs,
                             filters=filters,
                             kernel_size=kernel_size,
                             padding=padding,
-                            activation=activation,
-                            kernel_initializer=kernel_initializer)
-    bn_conv = tf.layers.batch_normalization(conv, training=is_training)
-    pool = tf.layers.max_pooling2d(inputs=bn_conv,
+                            activation=activation)
+    bn_conv = tf.compat.v1.layers.batch_normalization(conv, training=is_training)
+    pool = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv,
                                    pool_size=[1, bn_conv.shape[2]],
                                    strides=[1, bn_conv.shape[2]])
     return tf.squeeze(pool, [2])
 
 
-def tempo_block(inputs, filters, kernel_size, is_training, padding="same", activation=tf.nn.relu,
-                  kernel_initializer=tf.contrib.layers.variance_scaling_initializer()):
+def tempo_block(inputs, filters, kernel_size, is_training, padding="same", activation=tf.nn.relu):
 
-    conv = tf.layers.conv2d(inputs=inputs,
+    conv = tf.compat.v1.layers.conv2d(inputs=inputs,
                             filters=filters,
                             kernel_size=kernel_size,
                             padding=padding,
-                            activation=activation,
-                            kernel_initializer=kernel_initializer)
-    bn_conv = tf.layers.batch_normalization(conv, training=is_training)
-    pool = tf.layers.max_pooling2d(inputs=bn_conv,
+                            activation=activation)
+    bn_conv = tf.compat.v1.layers.batch_normalization(conv, training=is_training)
+    pool = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv,
                                    pool_size=[1, bn_conv.shape[2]],
                                    strides=[1, bn_conv.shape[2]])
     return tf.squeeze(pool, [2])
@@ -159,36 +154,33 @@ def midend(front_end_output, is_training, num_classes, num_filt, type):
 
     # conv layer 1 - adapting dimensions
     front_end_pad = tf.pad(front_end_output, [[0, 0], [3, 3], [0, 0], [0, 0]], "CONSTANT")
-    conv1 = tf.layers.conv2d(inputs=front_end_pad,
+    conv1 = tf.compat.v1.layers.conv2d(inputs=front_end_pad,
                              filters=num_filt,
                              kernel_size=[7, front_end_pad.shape[2]],
                              padding="valid",
-                             activation=tf.nn.relu,
-                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
-    bn_conv1 = tf.layers.batch_normalization(conv1, training=is_training)
+                             activation=tf.nn.relu)
+    bn_conv1 = tf.compat.v1.layers.batch_normalization(conv1, training=is_training)
     bn_conv1_t = tf.transpose(bn_conv1, [0, 1, 3, 2])
 
     # conv layer 2 - residual connection
     bn_conv1_pad = tf.pad(bn_conv1_t, [[0, 0], [3, 3], [0, 0], [0, 0]], "CONSTANT")
-    conv2 = tf.layers.conv2d(inputs=bn_conv1_pad,
+    conv2 = tf.compat.v1.layers.conv2d(inputs=bn_conv1_pad,
                              filters=num_filt,
                              kernel_size=[7, bn_conv1_pad.shape[2]],
                              padding="valid",
-                             activation=tf.nn.relu,
-                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
-    bn_conv2 = tf.layers.batch_normalization(conv2, training=is_training)
+                             activation=tf.nn.relu)
+    bn_conv2 = tf.compat.v1.layers.batch_normalization(conv2, training=is_training)
     conv2 = tf.transpose(bn_conv2, [0, 1, 3, 2])
     res_conv2 = tf.add(conv2, bn_conv1_t)
 
     # conv layer 3 - residual connection
     bn_conv2_pad = tf.pad(res_conv2, [[0, 0], [3, 3], [0, 0], [0, 0]], "CONSTANT")
-    conv3 = tf.layers.conv2d(inputs=bn_conv2_pad,
+    conv3 = tf.compat.v1.layers.conv2d(inputs=bn_conv2_pad,
                              filters=num_filt,
                              kernel_size=[7, bn_conv2_pad.shape[2]],
                              padding="valid",
-                             activation=tf.nn.relu,
-                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
-    bn_conv3 = tf.layers.batch_normalization(conv3, training=is_training)
+                             activation=tf.nn.relu)
+    bn_conv3 = tf.compat.v1.layers.batch_normalization(conv3, training=is_training)
     conv3 = tf.transpose(bn_conv3, [0, 1, 3, 2])
     res_conv3 = tf.add(conv3, res_conv2)
 
@@ -205,21 +197,19 @@ def temporal_pool(feature_map, is_training, num_classes, output_units, type):
     tmp_pool = tf.concat([max_pool, avg_pool], 2)
 
     # backend - 1 dense layer with droupout
-    flat_pool = tf.contrib.layers.flatten(tmp_pool)
-    flat_pool = tf.layers.batch_normalization(flat_pool, training=is_training)
-    flat_pool_dropout = tf.layers.dropout(flat_pool, rate=0.5, training=is_training)
-    dense = tf.layers.dense(inputs=flat_pool_dropout,
+    flat_pool = tf.compat.v1.layers.flatten(tmp_pool)
+    flat_pool = tf.compat.v1.layers.batch_normalization(flat_pool, training=is_training)
+    flat_pool_dropout = tf.compat.v1.layers.dropout(flat_pool, rate=0.5, training=is_training)
+    dense = tf.compat.v1.layers.dense(inputs=flat_pool_dropout,
                             units=output_units,
-                            activation=tf.nn.relu,
-                            kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
-    bn_dense = tf.layers.batch_normalization(dense, training=is_training)
-    dense_dropout = tf.layers.dropout(bn_dense, rate=0.5, training=is_training)
+                            activation=tf.nn.relu)
+    bn_dense = tf.compat.v1.layers.batch_normalization(dense, training=is_training)
+    dense_dropout = tf.compat.v1.layers.dropout(bn_dense, rate=0.5, training=is_training)
 
     # output layer
-    logits = tf.layers.dense(inputs=dense_dropout,
+    logits = tf.compat.v1.layers.dense(inputs=dense_dropout,
                            activation=None,
-                           units=num_classes,
-                           kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
+                           units=num_classes)
 
     return logits, bn_dense, max_pool, avg_pool
 

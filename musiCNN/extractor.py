@@ -1,20 +1,9 @@
 import numpy as np
 import librosa
 from tqdm import tqdm
-
-# disabling uncomfortable warnings
-#from absl import logging
-#logging._warn_preinit_stderr = 0
 import tensorflow as tf
-#tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
-
-# setting the path
-import sys
-sys.path.append("./musically_motivated_CNN/")
-
-# importing musiCNN models
-import models
-import configuration as config
+from musiCNN import models
+from musiCNN import configuration as config
 
 
 def batch_data(audio_file, n_frames, overlap):
@@ -44,7 +33,7 @@ def batch_data(audio_file, n_frames, overlap):
     return batch, audio_rep
 
 
-def predict(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False):
+def extractor(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False):
 
     # select model
     if model == 'MTT':
@@ -61,17 +50,18 @@ def predict(file_name, model='MTT', input_length=3, input_overlap=None, extract_
         overlap = librosa.time_to_frames(input_overlap, sr=config.SR, n_fft=config.FFT_SIZE, hop_length=config.FFT_HOP)
 
     # tensorflow: define the model
+    tf.compat.v1.reset_default_graph()
     with tf.name_scope('model'):
-        x = tf.placeholder(tf.float32, [None, n_frames, config.N_MELS])
-        is_training = tf.placeholder(tf.bool)
+        x = tf.compat.v1.placeholder(tf.float32, [None, n_frames, config.N_MELS])
+        is_training = tf.compat.v1.placeholder(tf.bool)
         y, timbral, temporal, midend1, midend2, midend3, avg_pool, max_pool, backend = models.define_models(x, is_training, model, num_classes)
         normalized_y = tf.nn.sigmoid(y)
 
     # tensorflow: loading model
-    sess = tf.InteractiveSession()
-    sess.run(tf.global_variables_initializer())
-    saver = tf.train.Saver()
-    saver.restore(sess, './musically_motivated_CNN/' + model + '/') 
+    sess = tf.compat.v1.Session()
+    sess.run(tf.compat.v1.global_variables_initializer())
+    saver = tf.compat.v1.train.Saver()
+    saver.restore(sess, './musiCNN/' + model + '/') 
 
     # batching data
     print('Computing spectrogram (w/ librosa) and tags (w/ tensorflow)..')
@@ -85,8 +75,8 @@ def predict(file_name, model='MTT', input_length=3, input_overlap=None, extract_
         extract_vector = [normalized_y]
 
     tf_out = sess.run(extract_vector, 
-                   feed_dict={x: batch[:config.BATCH_SIZE], 
-                   is_training: False})
+                      feed_dict={x: batch[:config.BATCH_SIZE], 
+                      is_training: False})
 
     if extract_features:
         predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = tf_out
@@ -110,7 +100,7 @@ def predict(file_name, model='MTT', input_length=3, input_overlap=None, extract_
 
         tf_out = sess.run(extract_vector, 
                           feed_dict={x: batch[id_pointer:id_pointer+config.BATCH_SIZE], 
-                           is_training: False})
+                          is_training: False})
 
         if extract_features:
             predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = tf_out
@@ -127,10 +117,13 @@ def predict(file_name, model='MTT', input_length=3, input_overlap=None, extract_
 
         taggram = np.concatenate((taggram, np.array(predicted_tags)), axis=0)
 
+    sess.close()
+
     if extract_features:
         return taggram, labels, features
     else:
         return taggram, labels
 
+#def top_tags
 
 
