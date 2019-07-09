@@ -1,7 +1,4 @@
-# musiCNN
-Pronounced as "musician", musiCNN is a pre-trained musically motivated CNN.
-
-### Frequently Asked Questions (FAQs)
+# Frequently Asked Questions (FAQs)
 * **What is the front-end?** lksjdf
 
 * **What is the back-end?** lskjdf
