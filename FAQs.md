@@ -9,6 +9,8 @@
 
 * **My mdoel is slow, even with a GPU. Can I do something?** lskjdf
 
+* **What are these songs you include in the repository?** lskjdf
+
 * **Which sampling rate, window and hop size where used to compute the log-mel spectrograms?** lskjdf
 window?
 log?
