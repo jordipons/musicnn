@@ -5,33 +5,36 @@ from musiCNN import configuration as config
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 
-def define_models(x, is_training, model, num_classes):
+def define_model(x, is_training, model, num_classes):
 
     if model == 'MTT':
-        out_frontend = frontend(x,
-                                is_training,
-                                config.N_MELS,
-                                num_filt=1.6,
-                                type='7774timbraltemporal')
-        return backend(out_frontend,
-                       is_training,
-                       num_classes,
-                       num_filt=64,
-                       output_units=200,
-                       type='globalpool_dense')
+        return build_model(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
 
-    elif model == 'MSD':
-        out_frontend = frontend(x,
-                                is_training,
-                                config.N_MELS,
-                                num_filt=1.6,
-                                type='7774timbraltemporal')
-        return backend(out_frontend,
-                       is_training,
-                       num_classes,
-                       num_filt=64,
-                       output_units=200,
-                       type='globalpool_dense')
+
+def build_model(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_midend=64, num_units_backend=200):
+
+    # front-end: musically motivated CNN
+    frontend_features_list = frontend(x, is_training, config.N_MELS, num_filt=1.6, type='7774timbraltemporal')
+    # concatnate features coming from the front-end
+    frontend_features = tf.concat(frontend_features_list, 2)
+
+    # mid-end: dense layers
+    midend_features_list = midend(frontend_features, is_training, num_classes, num_filt_midend, type)
+    # dense connection: concatnate features coming from different layers of the front- and mid-end
+    midend_features = tf.concat(midend_features_list, 2)
+
+    # back-end: temporal pooling
+    logits, penultimate, mean_pool, max_pool = backend(midend_features, is_training, num_classes, num_units_backend, type='globalpool_dense')
+
+    # [extract features] temporal and timbral features from the front-end
+    timbral = tf.concat([frontend_features_list[0], frontend_features_list[1]], 2)
+    temporal = tf.concat([frontend_features_list[2], frontend_features_list[3], frontend_features_list[4]], 2)
+    # [extract features] mid-end features
+    cnn1, cnn2, cnn3 = midend_features_list[1], midend_features_list[2], midend_features_list[3]
+    mean_pool = tf.squeeze(mean_pool, [2])
+    max_pool = tf.squeeze(max_pool, [2])
+
+    return logits, timbral, temporal, cnn1, cnn2, cnn3, mean_pool, max_pool, penultimate
 
 
   #################
@@ -55,16 +58,12 @@ def frontend(x, is_training, yInput, num_filt, type):
                            filters=int(num_filt*128),
                            kernel_size=[7, int(0.4 * yInput)],
                            is_training=is_training)
-        print('74 numb', int(num_filt*128))
-        print('74 field', int(0.4 * yInput))
 
         if '77' in type:
             f77 = timbral_block(inputs=input_pad_7,
                            filters=int(num_filt*128),
                            kernel_size=[7, int(0.7 * yInput)],
                            is_training=is_training)
-        print('77 numb', int(num_filt*128))
-        print('77 field', int(0.7 * yInput))
 
     if 'temporal' in type:
 
@@ -86,20 +85,7 @@ def frontend(x, is_training, yInput, num_filt, type):
 
     # choose the feature maps we want to use for the experiment
     if type == '7774timbraltemporal':
-        #front_end_output = [f74, f77, s1, s2, s3]
-        print(f74.get_shape())
-        print(f77.get_shape())
-        print(s1.get_shape())
-        print(s2.get_shape())
-        print(s3.get_shape())
         return [f74, f77, s1, s2, s3]
-
-    elif type == '74timbral':
-        #front_end_output = [f74]
-        return [f74]
-
-    #return tf.concat(front_end_output, 2)
-
 
 
 def timbral_block(inputs, filters, kernel_size, is_training, padding="valid", activation=tf.nn.relu):
@@ -110,7 +96,6 @@ def timbral_block(inputs, filters, kernel_size, is_training, padding="valid", ac
                             padding=padding,
                             activation=activation)
     bn_conv = tf.compat.v1.layers.batch_normalization(conv, training=is_training)
-    print('timbral in: ', bn_conv.get_shape())
     pool = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv,
                                    pool_size=[1, bn_conv.shape[2]],
                                    strides=[1, bn_conv.shape[2]])
@@ -125,38 +110,15 @@ def tempo_block(inputs, filters, kernel_size, is_training, padding="same", activ
                             padding=padding,
                             activation=activation)
     bn_conv = tf.compat.v1.layers.batch_normalization(conv, training=is_training)
-    print('temporal in: ', bn_conv.get_shape())
     pool = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv,
                                    pool_size=[1, bn_conv.shape[2]],
                                    strides=[1, bn_conv.shape[2]])
     return tf.squeeze(pool, [2])
 
 
-  ################
-  ### BACK END ###
-  ################
-
-
-def backend(front_end_features, is_training, num_classes, num_filt, output_units, type):
-
-    # concatnate features coming from the front-end
-    mid_end_input = tf.concat(front_end_features, 2)
-    # pass computed features through the mid-end
-    mid_end_features = midend(mid_end_input, is_training, num_classes, num_filt, type)
-    # dense connection: concatnate features coming from different layers of the front- and mid-end
-    dense_connection = tf.concat(mid_end_features, 2)
-    # temporal pooling: pass computed features through the back-end
-    logits, penultimate, max_pool, avg_pool = temporal_pool(dense_connection, is_training, num_classes, output_units, type)
-
-    # [extract features] temporal and timbral features from the front-end
-    timbral = tf.concat([front_end_features[0], front_end_features[1]], 2)
-    temporal = tf.concat([front_end_features[2], front_end_features[3], front_end_features[4]], 2)
-    # [extract features] mid-end features
-    cnn1, cnn2, cnn3 = mid_end_features[1], mid_end_features[2], mid_end_features[3]
-    max_pool = tf.squeeze(max_pool, [2])
-    avg_pool = tf.squeeze(avg_pool, [2])
-
-    return logits, timbral, temporal, cnn1, cnn2, cnn3, avg_pool, max_pool, penultimate
+  ###############
+  ### MID END ###
+  ###############
 
 
 def midend(front_end_output, is_training, num_classes, num_filt, type):
@@ -195,19 +157,22 @@ def midend(front_end_output, is_training, num_classes, num_filt, type):
     conv3 = tf.transpose(bn_conv3, [0, 1, 3, 2])
     res_conv3 = tf.add(conv3, res_conv2)
 
-    # dense connection
-    #return tf.concat([front_end_output, bn_conv1_t, res_conv2, res_conv3], 2)
     return [front_end_output, bn_conv1_t, res_conv2, res_conv3]
 
 
-def temporal_pool(feature_map, is_training, num_classes, output_units, type):
+  ################
+  ### BACK END ###
+  ################
+
+
+def backend(feature_map, is_training, num_classes, output_units, type):
 
     # temporal pooling
     max_pool = tf.reduce_max(feature_map, axis=1)
-    avg_pool, var_pool = tf.nn.moments(feature_map, axes=[1])
-    tmp_pool = tf.concat([max_pool, avg_pool], 2)
+    mean_pool, var_pool = tf.nn.moments(feature_map, axes=[1])
+    tmp_pool = tf.concat([max_pool, mean_pool], 2)
 
-    # backend - 1 dense layer with droupout
+    # penultimate dense layer
     flat_pool = tf.compat.v1.layers.flatten(tmp_pool)
     flat_pool = tf.compat.v1.layers.batch_normalization(flat_pool, training=is_training)
     flat_pool_dropout = tf.compat.v1.layers.dropout(flat_pool, rate=0.5, training=is_training)
@@ -217,11 +182,11 @@ def temporal_pool(feature_map, is_training, num_classes, output_units, type):
     bn_dense = tf.compat.v1.layers.batch_normalization(dense, training=is_training)
     dense_dropout = tf.compat.v1.layers.dropout(bn_dense, rate=0.5, training=is_training)
 
-    # output layer
+    # output dense layer
     logits = tf.compat.v1.layers.dense(inputs=dense_dropout,
                            activation=None,
                            units=num_classes)
 
-    return logits, bn_dense, max_pool, avg_pool
+    return logits, bn_dense, mean_pool, max_pool
 
 

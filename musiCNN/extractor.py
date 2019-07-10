@@ -34,6 +34,7 @@ def batch_data(audio_file, n_frames, overlap):
 
 
 def extractor(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False):
+    # TODO: documentation
 
     # select model
     if model == 'MTT':
@@ -54,7 +55,7 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=None, extrac
     with tf.name_scope('model'):
         x = tf.compat.v1.placeholder(tf.float32, [None, n_frames, config.N_MELS])
         is_training = tf.compat.v1.placeholder(tf.bool)
-        y, timbral, temporal, cnn1, cnn2, cnn3, avg_pool, max_pool, penultimate = models.define_models(x, is_training, model, num_classes)
+        y, timbral, temporal, cnn1, cnn2, cnn3, mean_pool, max_pool, penultimate = models.define_model(x, is_training, model, num_classes)
         normalized_y = tf.nn.sigmoid(y)
 
     # tensorflow: loading model
@@ -70,7 +71,7 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=None, extrac
     # tensorflow: extract features and tags
     # ..first batch!
     if extract_features:
-        extract_vector = [normalized_y, timbral, temporal, cnn1, cnn2, cnn3, avg_pool, max_pool, penultimate]
+        extract_vector = [normalized_y, timbral, temporal, cnn1, cnn2, cnn3, mean_pool, max_pool, penultimate]
     else:
         extract_vector = [normalized_y]
 
@@ -79,14 +80,14 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=None, extrac
                       is_training: False})
 
     if extract_features:
-        predicted_tags, timbral_, temporal_, cnn1_, cnn2_, cnn3_, avg_pool_, max_pool_, penultimate_ = tf_out
+        predicted_tags, timbral_, temporal_, cnn1_, cnn2_, cnn3_, mean_pool_, max_pool_, penultimate_ = tf_out
         features = dict()
         features['timbral'] = np.squeeze(timbral_)
         features['temporal'] = np.squeeze(temporal_)
         features['cnn1'] = np.squeeze(cnn1_)
         features['cnn2'] = np.squeeze(cnn2_)
         features['cnn3'] = np.squeeze(cnn3_)
-        features['avg_pool'] = avg_pool_
+        features['mean_pool'] = mean_pool_
         features['max_pool'] = max_pool_
         features['penultimate'] = penultimate_
     else:
@@ -103,13 +104,13 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=None, extrac
                           is_training: False})
 
         if extract_features:
-            predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, avg_pool_, max_pool_, backend_ = tf_out
+            predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, mean_pool_, max_pool_, backend_ = tf_out
             features['timbral'] = np.concatenate((features['timbral'], np.squeeze(timbral_)), axis=0)
             features['temporal'] = np.concatenate((features['temporal'], np.squeeze(temporal_)), axis=0)
             features['cnn1'] = np.concatenate((features['cnn1'], np.squeeze(cnn1_)), axis=0)
             features['cnn2'] = np.concatenate((features['cnn2'], np.squeeze(cnn2_)), axis=0)
             features['cnn3'] = np.concatenate((features['cnn3'], np.squeeze(cnn3_)), axis=0)
-            features['avg_pool'] = np.concatenate((features['avg_pool'], avg_pool_), axis=0)
+            features['mean_pool'] = np.concatenate((features['mean_pool'], mean_pool_), axis=0)
             features['max_pool'] = np.concatenate((features['max_pool'], max_pool_), axis=0)
             features['penultimate'] = np.concatenate((features['penultimate'], penultimate_), axis=0)
         else:
