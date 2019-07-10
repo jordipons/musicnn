@@ -11,15 +11,17 @@ Pronounced as "musician", musiCNN is a pre-trained musically motivated CNN.
 ## Run
 
 From within python, you can run this:
-```
+~~~~python
 file_name = './audio/joram-moments_of_clarity-08-solipsism-59-88.mp3'
 from musiCNN.tagger import top_tags
 tags = top_tags(file_name, model='MTT', topN=3)
+~~~~
 ```
- - techno
- - electronic
- - synth
- 
+techno
+electronic
+synth
+```
+
 or this:
 
 ```
@@ -27,6 +29,6 @@ file_name = './audio/TRWJAZW128F42760DD_test.mp3.mp3'
 from musiCNN.tagger import top_tags
 tags = top_tags(file_name, model='MTT', topN=3)
 ```
- - guitar
- - piano
- - fast
+ >- guitar
+ >- piano
+ >- fast
