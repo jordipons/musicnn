@@ -16,6 +16,6 @@
 `./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3` is an electronic music song from the test set of the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `./audio/TRWJAZW128F42760DD_test.mp3` is an instrumental Muddy Waters song-excerpt from the test set of the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split) called Screamin' And Cryin' (Live In Warsaw 1976).
 
-* **Which sampling rate, window and hop size where used to compute the log-mel spectrograms?** We compute the STFT of a downsampled signal at 16kHz, with a Hanning window of length 512 (50% overlap). We use 96 mel-bands (computed with librosa defaults), and we apply a logarithmic compression to it (`np.log10(10000 * x + 1)`).
+* **Which sampling rate, window and hop size were used to compute the log-mel spectrograms?** We compute the STFT of a downsampled signal at 16kHz, with a Hanning window of length 512 (50% overlap). We use 96 mel-bands (computed with librosa defaults), and we apply a logarithmic compression to it (`np.log10(10000 * x + 1)`).
 
 * **I love this library! How can I send you money?** First, contact me on `jordi.pons@dolby.com`.
