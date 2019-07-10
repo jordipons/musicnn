@@ -55,12 +55,16 @@ def frontend(x, is_training, yInput, num_filt, type):
                            filters=int(num_filt*128),
                            kernel_size=[7, int(0.4 * yInput)],
                            is_training=is_training)
+        print('74 numb', int(num_filt*128))
+        print('74 field', int(0.4 * yInput))
+
         if '77' in type:
             f77 = timbral_block(inputs=input_pad_7,
                            filters=int(num_filt*128),
                            kernel_size=[7, int(0.7 * yInput)],
                            is_training=is_training)
-
+        print('77 numb', int(num_filt*128))
+        print('77 field', int(0.7 * yInput))
 
     if 'temporal' in type:
 
@@ -83,6 +87,11 @@ def frontend(x, is_training, yInput, num_filt, type):
     # choose the feature maps we want to use for the experiment
     if type == '7774timbraltemporal':
         #front_end_output = [f74, f77, s1, s2, s3]
+        print(f74.get_shape())
+        print(f77.get_shape())
+        print(s1.get_shape())
+        print(s2.get_shape())
+        print(s3.get_shape())
         return [f74, f77, s1, s2, s3]
 
     elif type == '74timbral':
@@ -101,6 +110,7 @@ def timbral_block(inputs, filters, kernel_size, is_training, padding="valid", ac
                             padding=padding,
                             activation=activation)
     bn_conv = tf.compat.v1.layers.batch_normalization(conv, training=is_training)
+    print('timbral in: ', bn_conv.get_shape())
     pool = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv,
                                    pool_size=[1, bn_conv.shape[2]],
                                    strides=[1, bn_conv.shape[2]])
@@ -115,6 +125,7 @@ def tempo_block(inputs, filters, kernel_size, is_training, padding="same", activ
                             padding=padding,
                             activation=activation)
     bn_conv = tf.compat.v1.layers.batch_normalization(conv, training=is_training)
+    print('temporal in: ', bn_conv.get_shape())
     pool = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv,
                                    pool_size=[1, bn_conv.shape[2]],
                                    strides=[1, bn_conv.shape[2]])
