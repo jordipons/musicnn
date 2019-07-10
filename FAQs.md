@@ -6,7 +6,7 @@
 
 * **Which 50-tags does the MSD model predict?** TO DO.
 
-* **Why the MTT model predicts `no vocals` and `no vocal`?** Because the output-taxonomy of the model is determined by the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) and we used it as it is. 
+* **Why the MTT model predicts `no vocals` and `no vocal`?** Because the vocabulary of the model is determined by the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) and we used it as it is. 
 
 * **Why the MSD has 500 and the other 200?** TO DO.
 
