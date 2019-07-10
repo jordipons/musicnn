@@ -4,7 +4,7 @@
 
 * **Which are the typical cases where the model fails?** When the input audio has content that is out of the 50-tags vocabulary. Although in these cases the predictions are consistent and reasonable, the model cannot predict `bass` if this tag is not part of its vocabulary.
 
-* **Why the MTT model predicts `no vocals` and `no vocal`?** Because the vocabulary of the model is determined by the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) and we used it as it is. 
+* **Why the MTT model predicts `no vocals` and `no vocal`?** Because the vocabulary of the model is determined by the [MagnaTagATune dataset](https://github.com/keunwoochoi/magnatagatune-list) and we used it as it is. 
 
 * **My model is slow, even with a GPU. Can I do something?** Yes! In `./musiCNN/configuration.py` you can set a bigger batch size. The dafult is `BATCH_SIZE = 1`, what can be slow – but safe computationally.
 
