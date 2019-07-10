@@ -1,7 +1,7 @@
 # musiCNN
 Pronounced as "musician", musiCNN is a pre-trained musically motivated CNN.
 
-See the [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) and [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples for additional information on how to use `musiCNN`.
+See [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) and [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples for additional information on how to use `musiCNN`.
 
 Do you have questions? Check the [FAQs](https://github.com/jordipons/musiCNN/blob/master/FAQs.md).
 
