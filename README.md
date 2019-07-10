@@ -16,11 +16,9 @@ file_name = './audio/joram-moments_of_clarity-08-solipsism-59-88.mp3'
 from musiCNN.tagger import top_tags
 tags = top_tags(file_name, model='MTT', topN=3)
 ~~~~
-```
-- techno
-- electronic
-- synth
-```
+>- techno
+>- electronic
+>- synth
 
 or this:
 
