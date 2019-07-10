@@ -1,6 +1,6 @@
 # Frequently Asked Questions (FAQs)
 
-* **Which 50-tags does the MTT model predict?** These are: guitar, classical, slow, techno, strings, drums, electronic, rock, fast, piano, ambient, beat, violin, vocal, synth, female, indian, opera, male, singing, vocals, no vocals, harpsichord, loud, quiet, flute, woman, male vocal, no vocal, pop, soft, sitar, solo, man, classic, choir, voice, new age, dance, male voice, female vocal, beats, harp, cello, no voice, weird, country, metal, female voice, choral. These are determined by the [https://github.com/keunwoochoi/magnatagatune-list](MagnaTagATune dataset), that is used for training the MTT model.
+* **Which 50-tags does the MTT model predict?** These are: guitar, classical, slow, techno, strings, drums, electronic, rock, fast, piano, ambient, beat, violin, vocal, synth, female, indian, opera, male, singing, vocals, no vocals, harpsichord, loud, quiet, flute, woman, male vocal, no vocal, pop, soft, sitar, solo, man, classic, choir, voice, new age, dance, male voice, female vocal, beats, harp, cello, no voice, weird, country, metal, female voice, choral. These are determined by the [https://github.com/keunwoochoi/magnatagatune-list](MagnaTagATune) dataset, that is used for training the MTT model.
 
 * **Which are the typical cases where the model fails?** When the input audio has content that is out of the 50-tags vocabulary. Although in these cases the predictions are consistend and reasonable, one cannot predict `bass` if this tag is not part of the vocabulary of the model.
 
