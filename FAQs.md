@@ -14,7 +14,10 @@
 
 * **Which sampling rate, window and hop size were used to compute the log-mel spectrograms?** We compute the STFT of a downsampled signal at 16kHz, with a Hanning window of length 512 (50% overlap). We use 96 mel-bands (computed with librosa defaults), and we apply a logarithmic compression to it (`np.log10(10000 * x + 1)`).
 
-* **I love this library! How can I help you?** If you are using it for academic works, please cite us:
+* **I love this library! How can I give you money?** First, contact me on `jordi.pons@dolby.com`.
+
+# Are you using musiCNN?
+If you are using it for academic works, please cite us:
 ```
 @inproceedings{pons2018atscale,
   title={End-to-end learning for music audio tagging at scale},
@@ -24,4 +27,4 @@
 }
 
 ```
-If you use it for other purposes, just let us know!
+If you use it for other purposes, let us know!
