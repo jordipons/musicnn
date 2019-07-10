@@ -4,11 +4,7 @@
 
 * **Which are the typical cases where the model fails?** When the input audio has content that is out of the 50-tags vocabulary. Although in these cases the predictions are consistent and reasonable, the model cannot predict `bass` if this tag is not part of its vocabulary.
 
-* **Which 50-tags does the MSD model predict?** TO DO.
-
 * **Why the MTT model predicts `no vocals` and `no vocal`?** Because the vocabulary of the model is determined by the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) and we used it as it is. 
-
-* **Why the MSD has 500 and the other 200?** TO DO.
 
 * **My model is slow, even with a GPU. Can I do something?** Yes! In `./musiCNN/configuration.py` you can set a bigger batch size. The dafult is `BATCH_SIZE = 1`, what can be slow – but safe computationally.
 
@@ -19,3 +15,7 @@
 * **Which sampling rate, window and hop size were used to compute the log-mel spectrograms?** We compute the STFT of a downsampled signal at 16kHz, with a Hanning window of length 512 (50% overlap). We use 96 mel-bands (computed with librosa defaults), and we apply a logarithmic compression to it (`np.log10(10000 * x + 1)`).
 
 * **I love this library! How can I send you money?** First, contact me on `jordi.pons@dolby.com`.
+
+* **Which 50-tags does the MSD model predict?** TO DO.
+
+* **Why the MSD has 500 and the other 200?** TO DO.
