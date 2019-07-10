@@ -33,7 +33,7 @@ tags = top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model
 or this:
 
 ~~~~python
-tags = top_tags('./audio/TRWJAZW128F42760DD_test.mp3.mp3', model='MTT', topN=3)
+tags = top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 ~~~~
 >– guitar  
 >– piano  
