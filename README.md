@@ -17,7 +17,9 @@ from musiCNN.tagger import top_tags
 tags = top_tags(file_name, model='MTT', topN=3)
 ~~~~
 >–techno
+
 >–electronic
+
 >–synth
 
 or this:
@@ -28,7 +30,9 @@ from musiCNN.tagger import top_tags
 tags = top_tags(file_name, model='MTT', topN=3)
 ~~~~
 >– guitar
+
 >– piano
+
 >– fast
 
 See the [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) and [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples for additional information on how to use `musiCNN`.
