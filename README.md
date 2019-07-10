@@ -42,16 +42,3 @@ tags = top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 These two music clips are included in the `./audio/` folder of this repository. 
 
 You can listen to those and evaluate `musiCNN` yourself!
-
-### Are you using musiCNN?
-If you are using it for academic works, please cite us:
-```
-@inproceedings{pons2018atscale,
-  title={End-to-end learning for music audio tagging at scale},
-  author={Pons, Jordi and Nieto, Oriol and Prockup, Matthew and Schmidt, Erik M. and Ehmann, Andreas F. and Serra, Xavier},
-  booktitle={19th International Society for Music Information Retrieval Conference (ISMIR2018)},
-  year={2018},
-}
-
-```
-If you use it for other purposes, let us know!
