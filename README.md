@@ -16,9 +16,9 @@ file_name = './audio/joram-moments_of_clarity-08-solipsism-59-88.mp3'
 from musiCNN.tagger import top_tags
 tags = top_tags(file_name, model='MTT', topN=3)
 ~~~~
->- techno
->- electronic
->- synth
+>–techno
+>–electronic
+>–synth
 
 or this:
 
@@ -27,10 +27,8 @@ file_name = './audio/TRWJAZW128F42760DD_test.mp3.mp3'
 from musiCNN.tagger import top_tags
 tags = top_tags(file_name, model='MTT', topN=3)
 ~~~~
-```
-- guitar
-- piano
-- fast
-```
+>– guitar
+>– piano
+>– fast
 
 See the [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) and [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples for additional information on how to use `musiCNN`.
