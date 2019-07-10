@@ -13,17 +13,17 @@ def define_model(x, is_training, model, num_classes):
 
 def build_model(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_midend=64, num_units_backend=200):
 
-    # front-end: musically motivated CNN
+    ### front-end ### musically motivated CNN
     frontend_features_list = frontend(x, is_training, config.N_MELS, num_filt=1.6, type='7774timbraltemporal')
     # concatnate features coming from the front-end
     frontend_features = tf.concat(frontend_features_list, 2)
 
-    # mid-end: dense layers
+    ### mid-end ### dense layers
     midend_features_list = midend(frontend_features, is_training, num_classes, num_filt_midend, type)
     # dense connection: concatnate features coming from different layers of the front- and mid-end
     midend_features = tf.concat(midend_features_list, 2)
 
-    # back-end: temporal pooling
+    ### back-end ### temporal pooling
     logits, penultimate, mean_pool, max_pool = backend(midend_features, is_training, num_classes, num_units_backend, type='globalpool_dense')
 
     # [extract features] temporal and timbral features from the front-end
@@ -35,11 +35,6 @@ def build_model(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_mid
     max_pool = tf.squeeze(max_pool, [2])
 
     return logits, timbral, temporal, cnn1, cnn2, cnn3, mean_pool, max_pool, penultimate
-
-
-  #################
-  ### FRONT END ###
-  #################
 
 
 def frontend(x, is_training, yInput, num_filt, type):
@@ -116,11 +111,6 @@ def tempo_block(inputs, filters, kernel_size, is_training, padding="same", activ
     return tf.squeeze(pool, [2])
 
 
-  ###############
-  ### MID END ###
-  ###############
-
-
 def midend(front_end_output, is_training, num_classes, num_filt, type):
 
     front_end_output = tf.expand_dims(front_end_output, 3)
@@ -158,11 +148,6 @@ def midend(front_end_output, is_training, num_classes, num_filt, type):
     res_conv3 = tf.add(conv3, res_conv2)
 
     return [front_end_output, bn_conv1_t, res_conv2, res_conv3]
-
-
-  ################
-  ### BACK END ###
-  ################
 
 
 def backend(feature_map, is_training, num_classes, output_units, type):

@@ -7,6 +7,7 @@ from musiCNN import configuration as config
 
 
 def batch_data(audio_file, n_frames, overlap):
+    # TODO: documentation
 
     # compute the log-mel spectrogram with librosa
     audio, sr = librosa.load(audio_file, sr=config.SR)
