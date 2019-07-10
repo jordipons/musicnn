@@ -22,14 +22,14 @@ tags = top_tags(file_name, model='MTT', topN=10)
 ~~~~
 >– techno  
 >– electronic  
->– synth
->– fast
->– beat
->– drums
->– no vocals
->– no vocal
->– dance
->– ambient
+>– synth  
+>– fast  
+>– beat  
+>– drums  
+>– no vocals  
+>– no vocal  
+>– dance  
+>– ambient  
 
 or this:
 
