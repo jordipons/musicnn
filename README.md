@@ -43,7 +43,7 @@ These two music clips are included in the `./audio/` folder of this repository.
 
 You can listen to those and evaluate `musiCNN` yourself!
 
-## Are you using musiCNN?
+### Are you using musiCNN?
 If you are using it for academic works, please cite us:
 ```
 @inproceedings{pons2018atscale,
