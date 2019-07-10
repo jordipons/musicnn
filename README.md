@@ -54,4 +54,4 @@ If you are using it for academic works, please cite us:
 }
 
 ```
-If you use it for other purposes, let us know as well! :)
+If you use it for other purposes, let us know!
