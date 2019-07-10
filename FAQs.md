@@ -1,7 +1,11 @@
 # Frequently Asked Questions (FAQs)
-* **Which tags does the MTT model predict?** 'guitar', 'classical', 'slow', 'techno', 'strings', 'drums', 'electronic', 'rock', 'fast', 'piano', 'ambient', 'beat', 'violin', 'vocal', 'synth', 'female', 'indian', 'opera', 'male', 'singing', 'vocals', 'no vocals', 'harpsichord', 'loud', 'quiet', 'flute', 'woman', 'male vocal', 'no vocal', 'pop', 'soft', 'sitar', 'solo', 'man', 'classic', 'choir', 'voice', 'new age', 'dance', 'male voice', 'female vocal', 'beats', 'harp', 'cello', 'no voice', 'weird', 'country', 'metal', 'female voice', 'choral'. These are determined by the [https://github.com/keunwoochoi/magnatagatune-list](MagnaTagATune dataset), that is used for training the MTT model.
 
-* **Which tags does the MSD model predict?** 'rock','pop','alternative','indie','electronic','female vocalists','dance','00s','alternative rock','jazz','beautiful','metal','chillout','male vocalists','classic rock','soul','indie rock','Mellow','electronica','80s','folk','90s','chill','instrumental','punk','oldies','blues','hard rock','ambient','acoustic','experimental','female vocalist','guitar','Hip-Hop','70s','party','country','easy listening','sexy','catchy','funk','electro','heavy metal','Progressive rock','60s','rnb','indie pop','sad','House','happy'. These are determined by the [https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split](Milliion Song Dataset dataset), that is used for training the MSD model.
+* **Which are the typical cases where the model fails?** When the input audio has content that is out of the 50-tags considered. Although in these cases the predictions are consistend and reasonable, one cannot predict `bass` if this tag is not part of the vocabulary of the model.
+
+
+* **Which 50-tags does the MTT model predict?** These are: guitar, classical, slow, techno, strings, drums, electronic, rock, fast, piano, ambient, beat, violin, vocal, synth, female, indian, opera, male, singing, vocals, no vocals, harpsichord, loud, quiet, flute, woman, male vocal, no vocal, pop, soft, sitar, solo, man, classic, choir, voice, new age, dance, male voice, female vocal, beats, harp, cello, no voice, weird, country, metal, female voice, choral. These are determined by the [https://github.com/keunwoochoi/magnatagatune-list](MagnaTagATune dataset), that is used for training the MTT model.
+
+* **Which 50-tags does the MSD model predict?** TO DO.
 
 * **Why the MTT model predicts `no vocals` and `no vocal`?** Because the output-taxonomy of the model is determined by the [https://github.com/keunwoochoi/magnatagatune-list](MagnaTagATune dataset), that is used for training the MTT model, and we used it as it is. 
 
