@@ -39,4 +39,6 @@ tags = top_tags('./audio/TRWJAZW128F42760DD_test.mp3.mp3', model='MTT', topN=3)
 >– piano  
 >– fast
 
-These two music clips are included in the `./audio/` folder of this repository. You can listen to those and evaluate `musiCNN` yourself!
+These two music clips are included in the `./audio/` folder of this repository. 
+
+You can listen to those and evaluate `musiCNN` yourself!
