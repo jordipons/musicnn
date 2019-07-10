@@ -1,12 +1,32 @@
 # musiCNN
 Pronounced as "musician", musiCNN is a pre-trained musically motivated CNN.
 
-### Frequently Asked Questions (FAQs)
-* **What is the front-end?** lksjdf
+## Installation
+``` git clone https://github.com/jordipons/musiCNN.git```
 
-* **What is the back-end?** lskjdf
+``` pip install numpy librosa tqdm ```
 
-* **What is the transfer learning?** lskjdf
+```pip install tensorflow``` or ```pip install tensorflow-gpu``` (if you have a GPU)
 
-* **Why should I use this model as feature extractor?** lskjdf
+## Run
 
+From within python, you can run this:
+```
+file_name = './audio/joram-moments_of_clarity-08-solipsism-59-88.mp3'
+from musiCNN.tagger import top_tags
+tags = top_tags(file_name, model='MTT', topN=3)
+```
+ - techno
+ - electronic
+ - synth
+ 
+or this:
+
+```
+file_name = './audio/TRWJAZW128F42760DD_test.mp3.mp3'
+from musiCNN.tagger import top_tags
+tags = top_tags(file_name, model='MTT', topN=3)
+```
+ - guitar
+ - piano
+ - fast
