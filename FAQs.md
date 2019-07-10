@@ -15,7 +15,3 @@
 * **Which sampling rate, window and hop size were used to compute the log-mel spectrograms?** We compute the STFT of a downsampled signal at 16kHz, with a Hanning window of length 512 (50% overlap). We use 96 mel-bands (computed with librosa defaults), and we apply a logarithmic compression to it (`np.log10(10000 * x + 1)`).
 
 * **I love this library! How can I send you money?** First, contact me on `jordi.pons@dolby.com`.
-
-* **Which 50-tags does the MSD model predict?** TO DO.
-
-* **Why the MSD has 500 and the other 200?** TO DO.
