@@ -1,9 +1,9 @@
 # Frequently Asked Questions (FAQs)
-* **What is the front-end?** lksjdf
+* **Which tags does the MTT model predict?** lksjdf
 
-* **What is the back-end?** lskjdf
+* **Which tags does the MSD model predict?** lksjdf
 
-* **What is the transfer learning?** lskjdf
+* **Why the MTT model predicts `no vocals` and `no vocal`?** lksjdf
 
 * **Why should I use this model as feature extractor?** lskjdf
 
