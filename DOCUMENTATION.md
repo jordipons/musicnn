@@ -1,3 +1,6 @@
+# Documentation
+-------------
+
 ```python
 tags = musiCNN.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, verbose=0)
 ```
