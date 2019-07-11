@@ -10,6 +10,8 @@ tags = musiCNN.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, i
 >**Output**
 >- *tags:* a list of.. Data format: list of topN length.
 
+-----------------
+
 ```python
 taggram, tags, features = musiCNN.extractor.extractor(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False)
 ```
