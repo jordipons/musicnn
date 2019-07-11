@@ -1,5 +1,7 @@
 # Frequently Asked Questions (FAQs)
 
+* **Which is the deep learning architecture of the 'MTT' model?** It employs a musically motivated CNN frontend, some dense layers in the mid-end, and a temporal-pooling back-end. In this [jupyter notebook](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) we provide details about the model.
+
 * **Which 50-tags does the MTT model predict?** These are determined by the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset, that is used for training the MTT model: guitar, classical, slow, techno, strings, drums, electronic, rock, fast, piano, ambient, beat, violin, vocal, synth, female, indian, opera, male, singing, vocals, no vocals, harpsichord, loud, quiet, flute, woman, male vocal, no vocal, pop, soft, sitar, solo, man, classic, choir, voice, new age, dance, male voice, female vocal, beats, harp, cello, no voice, weird, country, metal, female voice, choral.
 
 * **Which are the typical cases where the model fails?** When the input-audio has content that is out of the 50-tags vocabulary. Although in these cases the predictions are consistent and reasonable, the model cannot predict `bass` if this tag is not part of its vocabulary.
