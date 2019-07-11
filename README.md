@@ -1,7 +1,7 @@
 # musiCNN
 Pronounced as "musician", musiCNN is a set of pre-trained deep neural networks for music audio tagging.
 
-See [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) and [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples for additional ideas on how to use `musiCNN`.
+Check the [documentation](https://github.com/jordipons/musiCNN/blob/master/DOCUMENTATION.md) and some [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb)/[advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples for additional ideas on how to use `musiCNN`.
 
 Do you have questions? Check the [FAQs](https://github.com/jordipons/musiCNN/blob/master/FAQs.md).
 
