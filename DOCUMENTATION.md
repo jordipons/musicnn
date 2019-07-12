@@ -1,7 +1,7 @@
 # Documentation
 
 ```python
-tags = musiCNN.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, verbose=0)
+tags = musiCNN.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, print_tags=True)
 ```
 Predict the `topN` tags from the music audio in `file_name` file with the selected `model`.  
 
@@ -17,18 +17,19 @@ Predict the `topN` tags from the music audio in `file_name` file with the select
 *Example:* 3
 - **input_length:** length (in seconds) of the input spectrogram patches.  
 *Data format:* floating point number.  
-*Example:* 2.5 TEST THAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- **input_length:** ammount of overlap (in seconds) of the input spectrogram patches.  
+*Example:* 2.5
+- **input_overlap:** ammount of overlap (in seconds) of the input spectrogram patches.  
 *Data format:* floating point number.  
-*Example:* 2.5 TEST THAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-- **verbose:** ammount of printed information.  FIND GOOD WORDING FOR THAT!!!!!!
-*Data format:* integer (0 or 1).  
-*Options:* 0 (minimal), 1 (tags are printed on the screen). DO THAT!!!!!!!
+*Example:* 2.5
+- **print_tags:** set it for printing the tags.
+*Note*: although you don't print the tags, these will be returned by the `musiCNN.tagger.top_tags()` function.
+*Data format:* boolean (`True` or `False`).  
+*Options:* `False` (for NOT printing the tags), `True` (for printing the tags).
 
 **Output**
 - **tags:** `topN` tags from the music audio in `file_name` file with the selected `model`.    
 *Data format:* list.  
-*Example:* ['synth', 'techno'] TEST THAT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*Example:* ['synth', 'techno']
 ***************
 
 ```python
