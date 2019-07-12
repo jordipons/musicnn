@@ -9,9 +9,9 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 - **file_name:** path to the music file to tag.  
 *Data format:* string.  
 *Example:* './audio/TRWJAZW128F42760DD_test.mp3'
-- **model:** select the music audio tagging model.  
+- **model:** select the music audio tagging model. 
 *Data format:* string.  
-*Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).
+*Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).  To know more about our this model, check our [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) example and [FAQs](https://github.com/jordipons/musiCNN/blob/master/FAQs.md).
 - **topN:** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Example:* 3
@@ -44,7 +44,7 @@ Predict the `taggram` (the temporal evolution of tags) and `features` (intermedi
 *Example:* './audio/TRWJAZW128F42760DD_test.mp3'
 - **model:** select the music audio tagging model.  
 *Data format:* string.  
-*Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).
+*Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset). [FAQs](https://github.com/jordipons/musiCNN/blob/master/FAQs.md).
 - **topN:** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Example:* 3
