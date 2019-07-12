@@ -54,7 +54,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Data format:* floating point number.  
 *Example:* 3.1
 - **input_overlap:** ammount of overlap (in seconds) of the input spectrogram patches.  
-Set it considering the `input_length`.  
+*Note:* Set it considering the `input_length`.  
 *Data format:* floating point number.  
 *Example:* 1
 - **extract_features:** set it `True` for extracting the intermediate representations of the model.  
