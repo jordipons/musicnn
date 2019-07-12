@@ -62,14 +62,15 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Options:* `False` (for NOT extracting the features), `True` (for extracting the features).  
   
 **Output**
-- *taggram:* blablabla
+- *taggram:*  expresses the temporal evolution of the tags likelihood.
+*Data format:* 2D np.ndarray (time, tags).  
+*Example:* see our [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) / [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples.
+- *tags:* list of tags corresponding to the tag-indices of the taggram.
 *Data format:* list.  
-*Example:* ['synth', 'techno']
-- *tags:* a list of..
-*Data format:* list.  
-*Example:* ['synth', 'techno']
-- *features:* a dictionary of..
-*Data format:* list.  
-*Example:* ['synth', 'techno']
+*Example:* see our [FAQs](https://github.com/jordipons/musiCNN/blob/master/FAQs.md) page for the complete tags list.
+- *features:* a dictionary containing the outputs of the different layers that the selected model has.
+*Data format:* dictionary.  
+*Keys*: ['timbral',  'temporal', 'cnn1', 'cnn2', 'cnn3', 'mean_pool', 'max_pool', 'penultimate']
+*Example:* see our [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples page.
 
 
