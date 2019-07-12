@@ -17,12 +17,12 @@ Do you have questions? Check the [FAQs](https://github.com/jordipons/musiCNN/blo
 From within python, you can estimate the topN tags:
 ~~~~python
 from musiCNN.tagger import top_tags
-tags = top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT', topN=10)
+top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT', topN=10)
 ~~~~
 >['techno', 'electronic', 'synth', 'fast', 'beat', 'drums', 'no vocals', 'no vocal', 'dance', 'ambient']
 
 ~~~~python
-tags = top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
+top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 ~~~~
 >['guitar', 'piano', 'fast']
 
