@@ -1,5 +1,8 @@
 # Frequently Asked Questions (FAQs)
 
+
+* **Can I run musiCNN on a CPU?** Yes, the models are already trained.
+
 * **Which is the deep learning architecture of the 'MTT' model?** It employs a [musically motivated CNN](http://mtg.upf.edu/node/3508) frontend, some [dense layers](https://arxiv.org/abs/1608.06993) in the mid-end, and a [temporal-pooling](https://arxiv.org/abs/1711.02520) back-end. In this [jupyter notebook](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) we provide further details about the model.
 
 * **Which 50-tags does the MTT model predict?** These are determined by the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset, that is used for training the MTT model: guitar, classical, slow, techno, strings, drums, electronic, rock, fast, piano, ambient, beat, violin, vocal, synth, female, indian, opera, male, singing, vocals, no vocals, harpsichord, loud, quiet, flute, woman, male vocal, no vocal, pop, soft, sitar, solo, man, classic, choir, voice, new age, dance, male voice, female vocal, beats, harp, cello, no voice, weird, country, metal, female voice, choral.
