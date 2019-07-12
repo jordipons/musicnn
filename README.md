@@ -14,7 +14,7 @@ Do you have questions? Check the [FAQs](https://github.com/jordipons/musiCNN/blo
 
 ## Run
 
-From within python, you can estimate the topN tags:
+From within python, you can estimate the **topN** tags:
 ~~~~python
 from musiCNN.tagger import top_tags
 top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT', topN=10)
@@ -28,7 +28,7 @@ top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 ~~~~
 >['guitar', 'piano', 'fast']
 
-Alternatively, you can also compute the taggram (see our [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) example for more details on how to depict it):
+Alternatively, you can also compute the **taggram** (see our [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) example for more details on how to depict it):
 
 ~~~~python
 from musiCNN.extractor import extractor
