@@ -2,8 +2,8 @@ import numpy as np
 import librosa
 from tqdm import tqdm
 import tensorflow as tf
-from musiCNN import models
-from musiCNN import configuration as config
+from musicnn import models
+from musicnn import configuration as config
 
 
 def batch_data(audio_file, n_frames, overlap):
@@ -132,7 +132,7 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extra
     sess = tf.compat.v1.Session()
     sess.run(tf.compat.v1.global_variables_initializer())
     saver = tf.compat.v1.train.Saver()
-    saver.restore(sess, './musiCNN/' + model + '/') 
+    saver.restore(sess, './musicnn/' + model + '/') 
 
     # batching data
     print('Computing spectrogram (w/ librosa) and tags (w/ tensorflow)..')

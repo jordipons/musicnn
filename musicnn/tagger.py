@@ -1,5 +1,5 @@
 import numpy as np
-from musiCNN.extractor import extractor
+from musicnn.extractor import extractor
 
 
 def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False, print_tags=True):
@@ -29,7 +29,7 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     Example: 1
         
     - print_tags: set it True for printing the tags.
-    Note: although you don't print the tags, these will be returned by the musiCNN.tagger.top_tags() function.
+    Note: although you don't print the tags, these will be returned by the musicnn.tagger.top_tags() function.
     Data format: True or False (boolean).
     Options: False (for NOT printing the tags), True (for printing the tags).
 

@@ -1,9 +1,9 @@
 # Frequently Asked Questions (FAQs)
 
 
-* **Can I run musiCNN on a CPU?** Yes, the models are already trained.
+* **Can I run musicnn on a CPU?** Yes, the models are already trained.
 
-* **Which is the deep learning architecture of the 'MTT' model?** It employs a [musically motivated CNN](http://mtg.upf.edu/node/3508) frontend, some [dense layers](https://arxiv.org/abs/1608.06993) in the mid-end, and a [temporal-pooling](https://arxiv.org/abs/1711.02520) back-end. In this [jupyter notebook](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) we provide further details about the model.
+* **Which is the deep learning architecture of the 'MTT' model?** It employs a [musically motivated CNN](http://mtg.upf.edu/node/3508) frontend, some [dense layers](https://arxiv.org/abs/1608.06993) in the mid-end, and a [temporal-pooling](https://arxiv.org/abs/1711.02520) back-end. In this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) we provide further details about the model.
 
 * **Which 50-tags does the MTT model predict?** These are determined by the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset, that is used for training the MTT model: guitar, classical, slow, techno, strings, drums, electronic, rock, fast, piano, ambient, beat, violin, vocal, synth, female, indian, opera, male, singing, vocals, no vocals, harpsichord, loud, quiet, flute, woman, male vocal, no vocal, pop, soft, sitar, solo, man, classic, choir, voice, new age, dance, male voice, female vocal, beats, harp, cello, no voice, weird, country, metal, female voice, choral.
 
@@ -11,7 +11,7 @@
 
 * **Why the MTT model predicts `no vocals` and `no vocal`?** Because the vocabulary of the model is determined by the [MagnaTagATune dataset](https://github.com/keunwoochoi/magnatagatune-list) and we used it as it is. 
 
-* **My model is slow, even with a GPU. Can I do something?** Yes! In `./musiCNN/configuration.py` you can set a bigger batch size. The dafult is `BATCH_SIZE = 1`, what can be slow – but safe computationally.
+* **My model is slow, even with a GPU. Can I do something?** Yes! In `./musicnn/configuration.py` you can set a bigger batch size. The dafult is `BATCH_SIZE = 1`, what can be slow – but safe computationally.
 
 * **What are these songs you include in the repository?**  
 `./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3` is an electronic music song from the test set of the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
@@ -21,7 +21,7 @@
 
 * **I love this library! How can I send you money?** First, contact me on `jordi.pons@dolby.com`.
 
-# Are you using musiCNN?
+# Are you using musicnn?
 If you are using it for academic works, please cite us:
 ```
 @inproceedings{pons2018atscale,
