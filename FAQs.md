@@ -1,7 +1,7 @@
 # Frequently Asked Questions (FAQs)
 
 
-* **Can I run musicnn on a CPU?** Yes, the models are already trained.
+* **Can I run `musicnn` on a CPU?** Yes, the models are already trained.
 
 * **Which is the deep learning architecture of the 'MTT' model?** It employs a [musically motivated CNN](http://mtg.upf.edu/node/3508) frontend, some [dense layers](https://arxiv.org/abs/1608.06993) in the mid-end, and a [temporal-pooling](https://arxiv.org/abs/1711.02520) back-end. In this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) we provide further details about the model.
 
