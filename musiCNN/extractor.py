@@ -7,7 +7,30 @@ from musiCNN import configuration as config
 
 
 def batch_data(audio_file, n_frames, overlap):
-    # TODO: documentation
+    '''Extract the taggram (the temporal evolution of tags) and features (intermediate representations of the model) of the music-clip in file_name with the selected model.
+
+    INPUT
+
+    - file_name: path to the music file to tag.
+    Data format: string.
+    Example: './audio/TRWJAZW128F42760DD_test.mp3'
+
+    - n_frames: length (in frames) of the input spectrogram patches. Set it small for real-time applications.
+    This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our basic / advanced examples to know more about that.
+    Data format: integer.
+    Example: 187
+        
+    - overlap: ammount of overlap (in frames) of the input spectrogram patches.
+    Note: Set it considering the input_length.
+    Data format: integer.
+    Example: 10
+    
+    OUTPUT
+    
+    - batch: 
+    
+    - audio_rep:
+    '''
 
     # compute the log-mel spectrogram with librosa
     audio, sr = librosa.load(audio_file, sr=config.SR)
