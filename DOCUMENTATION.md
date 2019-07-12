@@ -12,7 +12,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 - **model:** select the music audio tagging model.  
 *Data format:* string.  
 *Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).
-- **topN:** extract N most likelihood tags according to the selected model.  
+- **topN:** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Example:* 3
 - **input_length:** length (in seconds) of the input spectrogram patches.  
