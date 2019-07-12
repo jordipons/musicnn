@@ -7,7 +7,7 @@ from musiCNN import configuration as config
 
 
 def batch_data(audio_file, n_frames, overlap):
-    '''Extract the taggram (the temporal evolution of tags) and features (intermediate representations of the model) of the music-clip in file_name with the selected model.
+    '''For an efficient computation, we split the full music spectrograms in patches of length n_frames with overlap.
 
     INPUT
 
@@ -27,9 +27,11 @@ def batch_data(audio_file, n_frames, overlap):
     
     OUTPUT
     
-    - batch: 
+    - batch: batched audio representation. It returns spectrograms split in patches of length n_frames with overlap.
+    Data format: 3D np.array (batch, time, frequency)
     
-    - audio_rep:
+    - audio_rep: raw audio representation (spectrogram).
+    Data format: 2D np.array (time, frequency)
     '''
 
     # compute the log-mel spectrogram with librosa
