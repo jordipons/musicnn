@@ -21,12 +21,14 @@ top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT',
 ~~~~
 >['techno', 'electronic', 'synth', 'fast', 'beat', 'drums', 'no vocals', 'no vocal', 'dance', 'ambient']
 
+Let's try another song!
+
 ~~~~python
 top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 ~~~~
 >['guitar', 'piano', 'fast']
 
-or to compute the taggram (see the basic example for more details on how to depict it):
+Alternatively, you can also compute the taggram (see our [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) example for more details on how to depict it):
 
 ~~~~python
 from musiCNN.extractor import extractor
@@ -34,6 +36,6 @@ taggram, tags = extractor('./audio/joram-moments_of_clarity-08-solipsism-59-88.m
 ~~~~
 ![Taggram](./images/taggram.png "Taggram")
 
-These two music clips are included in the `./audio/` folder of this repository. 
+The analyzed music clips are included in the `./audio/` folder of this repository. 
 
 You can listen to those and evaluate `musiCNN` yourself!
