@@ -71,6 +71,6 @@ This is the length of the data that is going to be fed to the model. In other wo
 - **features:** a dictionary containing the outputs of the different layers that the selected model has.  
 *Data format:* dictionary.  
 *Keys*: ['timbral',  'temporal', 'cnn1', 'cnn2', 'cnn3', 'mean_pool', 'max_pool', 'penultimate']  
-*Example:* see our [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples page.
+*Example:* see our [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples.
 
 
