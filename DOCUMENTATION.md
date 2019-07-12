@@ -15,14 +15,13 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 - **topN:** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Example:* 3
-- **input_length:** length (in seconds) of the input spectrogram patches.  
-This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) / [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples to know more about that.  
-Set it small (recommended: 1 sec) for real-time applications.  
-*Data format:* floating point number.  
-*Example:* 2.5
-- **input_overlap:** ammount of overlap (in seconds) of the input spectrogram patches.  
+- **input_length:** length (in seconds) of the input spectrogram patches. Set it small (recommended: 1 sec) for real-time applications.   
+This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) / [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples to know more about that.   
 *Data format:* floating point number.  
 *Example:* 3.1
+- **input_overlap:** ammount of overlap (in seconds) of the input spectrogram patches.  
+*Data format:* floating point number.  
+*Example:* 1
 - **print_tags:** set it for printing the tags.  
 *Note*: although you don't print the tags, these will be returned by the `musiCNN.tagger.top_tags()` function.  
 *Data format:* boolean (`True` or `False`).  
