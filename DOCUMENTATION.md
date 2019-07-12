@@ -37,7 +37,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 ```python
 taggram, tags, features = musiCNN.extractor.extractor(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False)
 ```
-Predict the `taggram` (the temporal evolution of tags) and `features` (intermediate representations of the model) of the music-clip in `file_name` with the selected `model`.  
+Extract the `taggram` (the temporal evolution of tags) and `features` (intermediate representations of the model) of the music-clip in `file_name` with the selected `model`.  
 
 **Input**
 - **file_name:** path to the music file to tag.  
