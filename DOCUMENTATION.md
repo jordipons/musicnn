@@ -28,7 +28,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Options:* `False` (for NOT printing the tags), `True` (for printing the tags).  
   
 **Output**
-- **tags:** `topN` tags from the music audio in `file_name` file with the selected `model`.    
+- **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
 *Data format:* list.  
 *Example:* ['synth', 'techno']
 ***************
@@ -36,13 +36,38 @@ This is the length of the data that is going to be fed to the model. In other wo
 ```python
 taggram, tags, features = musiCNN.extractor.extractor(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False)
 ```
-> Brief description of what it does.
->
->**Input**
->
->**Output**
->- *taggram:* a matrix of..
->- *tags:* a list of..
->- *features:* a dictionary of..
+Predict the `taggram` (the temporal evolution of tags) and `features` (intermediate representations of the model) of the music-clip in `file_name` with the selected `model`.  
+
+**Input**
+- **file_name:** path to the music file to tag.  
+*Data format:* string.  
+*Example:* './audio/TRWJAZW128F42760DD_test.mp3'
+- **model:** select the music audio tagging model.  
+*Data format:* string.  
+*Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).
+- **topN:** extract N most likely tags according to the selected model.  
+*Data format:* integer.  
+*Example:* 3
+- **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
+This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) / [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples to know more about that.   
+*Data format:* floating point number.  
+*Example:* 3.1
+- **input_overlap:** ammount of overlap (in seconds) of the input spectrogram patches. Set it considering the `input_length`.  
+*Data format:* floating point number.  
+*Example:* 1
+- **extract_features:** set it `True` for extracting the intermediate representations of the model.  
+*Data format:* boolean (`True` or `False`).  
+*Options:* `False` (for NOT extracting the features), `True` (for extracting the features).  
+  
+**Output**
+- *taggram:* blablabla
+*Data format:* list.  
+*Example:* ['synth', 'techno']
+- *tags:* a list of..
+*Data format:* list.  
+*Example:* ['synth', 'techno']
+- *features:* a dictionary of..
+*Data format:* list.  
+*Example:* ['synth', 'techno']
 
 
