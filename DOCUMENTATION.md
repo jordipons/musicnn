@@ -3,7 +3,7 @@
 ```python
 tags = musiCNN.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, print_tags=True)
 ```
-Predict the `topN` of from the music-clip in `file_name` file with the selected `model`.  
+Predict the `topN` tags of from the music-clip in `file_name` file with the selected `model`.  
 
 **Input**
 - **file_name:** path to the music file to tag.  
