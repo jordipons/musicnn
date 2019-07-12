@@ -34,7 +34,7 @@ def batch_data(audio_file, n_frames, overlap):
     return batch, audio_rep
 
 
-def extractor(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False):
+def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extract_features=False):
     # TODO: documentation
 
     # select model
