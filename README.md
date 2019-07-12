@@ -1,5 +1,5 @@
-# musiCNN
-Pronounced as "musician", musiCNN is a set of pre-trained deep neural networks for music audio tagging.
+# musicnn
+Pronounced as "musician", musicnn is a set of pre-trained deep convolutional neural networks for music audio tagging.
 
 Check the [documentation](https://github.com/jordipons/musiCNN/blob/master/DOCUMENTATION.md) and some [basic](https://github.com/jordipons/musiCNN/blob/master/basic%20example.ipynb) / [advanced](https://github.com/jordipons/musiCNN/blob/master/advanced%20example.ipynb) examples for additional ideas on how to use `musiCNN`.
 
