@@ -1,6 +1,5 @@
 import numpy as np
 import librosa
-from tqdm import tqdm
 import tensorflow as tf
 from musicnn import models
 from musicnn import configuration as config
@@ -48,7 +47,7 @@ def batch_data(audio_file, n_frames, overlap):
     first = True
     last_frame = audio_rep.shape[0] - n_frames + 1
     # +1 is to include the last frame that range would not include
-    for time_stamp in tqdm(range(0, last_frame, overlap)):
+    for time_stamp in range(0, last_frame, overlap):
         patch = np.expand_dims(audio_rep[time_stamp : time_stamp + n_frames, : ], axis=0)
         if first:
             batch = patch
@@ -167,7 +166,7 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extra
 
 
     # ..rest of the batches!
-    for id_pointer in tqdm(range(config.BATCH_SIZE, batch.shape[0], config.BATCH_SIZE)):
+    for id_pointer in range(config.BATCH_SIZE, batch.shape[0], config.BATCH_SIZE):
 
         tf_out = sess.run(extract_vector, 
                           feed_dict={x: batch[id_pointer:id_pointer+config.BATCH_SIZE], 
