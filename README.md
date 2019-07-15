@@ -8,7 +8,7 @@ Do you have questions? Check the [FAQs](https://github.com/jordipons/musicnn/blo
 ## Installation
 ``` git clone https://github.com/jordipons/musicnn.git```
 
-``` pip install numpy librosa tqdm ```
+``` pip install numpy librosa```
 
 ```pip install tensorflow``` or ```pip install tensorflow-gpu``` (if you have a GPU)
 
