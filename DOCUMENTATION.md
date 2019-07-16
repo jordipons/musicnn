@@ -1,6 +1,6 @@
 # Documentation
 
-## Python interface
+### Python interface
 
 ```python
 tags = musicnn.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, print_tags=True)
@@ -79,7 +79,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Example:* see our [advanced](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) examples.
 
 
-## Command-line interface
+### Command-line interface
 
 ```python
 tags = musicnn.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, print_tags=True)
