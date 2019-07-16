@@ -30,16 +30,16 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     - input_overlap: ammount of overlap (in seconds) of the input spectrogram patches.
     Note: Set it considering the input_length.
     Data format: floating point number.
-    Example: 1
+    Example: 1.0
         
     - print_tags: set it True for printing the tags.
     Note: although you don't print the tags, these will be returned by the musicnn.tagger.top_tags() function.
-    Data format: True or False (boolean).
+    Data format: boolean.
     Options: False (for NOT printing the tags), True (for printing the tags).
 
     - store_tags: Path where to store the tags.
     Data format: string.
-    Options: 'file_name.tags'
+    Example: 'file_name.tags'
 
     OUTPUT
 
