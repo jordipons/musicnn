@@ -41,7 +41,6 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     Data format: string.
     Options: 'file_name.tags'
 
-
     OUTPUT
 
     - tags: topN most likely tags of the music-clip in file_name considering the selected model.
