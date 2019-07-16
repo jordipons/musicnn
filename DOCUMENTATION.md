@@ -29,7 +29,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Options:* `False` (for NOT printing the tags), `True` (for printing the tags).  
 - **store_tags:** Path where to store the tags.  
 *Data format:* string.  
-*Options:* 'file_name.tags'.  
+*Options:* 'file_name.tags'  
   
 **Output**
 - **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
