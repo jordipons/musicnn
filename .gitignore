@@ -1,3 +1,4 @@
 .ipynb_checkpoints/
 .ipynb
 musicnn/__pycache__/
+*.tags
