@@ -113,8 +113,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 - **--output  (-o):** Path where to store the tags.  
 *Data format:* string.  
 *Example:* 'file_name.tags'  
+*Output data format:* csv.  
   
 **Output**
 - **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
-*Data format:* list.  
-*Example:* ['synth', 'techno']
