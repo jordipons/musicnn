@@ -28,7 +28,7 @@ top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 ~~~~
 >['guitar', 'piano', 'fast']
 
-Alternatively, from the **command-line**, print to the topN tags on the screen:
+From the **command-line**, print to the topN tags on the screen:
 
 ~~~~
 python -m musicnn.tagger ./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3 --topN 10 --print_tags
@@ -38,8 +38,8 @@ python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --topN 3 --print_ta
 or save to a file:
 
 ~~~~
-python -m musicnn.tagger ./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3 --output out.tags --topN 10
-python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --output out.tags --topN 3
+python -m musicnn.tagger ./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3 --topN 10 --output out.tags
+python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --topN 3 --output out.tags
 ~~~~
 
 ## Extract the Taggram
