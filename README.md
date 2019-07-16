@@ -12,7 +12,7 @@ Do you have questions? Check the [FAQs](https://github.com/jordipons/musicnn/blo
 
 ```pip install tensorflow``` or ```pip install tensorflow-gpu``` (if you have a GPU)
 
-## Predict TopN tags
+## Predict tags
 
 From within **python**, you can estimate the topN tags:
 ~~~~python
