@@ -129,14 +129,6 @@ if __name__ == '__main__':
     # read parameters from command line
     params = parse_args()
 
-    print(params.file_name)
-    print(params.model)
-    print(params.topN)
-    print(params.input_length)
-    print(params.input_overlap)
-    print(params.print_tags)
-    print(params.output)
-
     # predict topN tags
     topN_tags = top_tags(params.file_name, 
                          model=params.model, 
