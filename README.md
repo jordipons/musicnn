@@ -12,9 +12,9 @@ Do you have questions? Check the [FAQs](https://github.com/jordipons/musicnn/blo
 
 ```pip install tensorflow``` or ```pip install tensorflow-gpu``` (if you have a GPU)
 
-## Run
+## Predict topN tags
 
-From within **python**, you can estimate the **topN** tags:
+From within **python**, you can estimate the topN tags:
 ~~~~python
 from musicnn.tagger import top_tags
 top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT', topN=10)
@@ -28,7 +28,7 @@ top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 ~~~~
 >['guitar', 'piano', 'fast']
 
-Alternatively, from the **command-line**, print to the **topN** tags on the screen:
+Alternatively, from the **command-line**, print to the topN tags on the screen:
 
 ~~~~
 python -m musicnn.tagger ./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3 --topN 10 --print_tags
@@ -42,9 +42,9 @@ python -m musicnn.tagger ./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3
 python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --output out.tags --topN 3
 ~~~~
 
-----------------------------
+## Extract the Taggram
 
-You can also compute the **taggram** using **python** (see our [basic](https://github.com/jordipons/musicnn/blob/master/basic%20example.ipynb) example for more details on how to depict it):
+You can also compute the taggram using **python** (see our [basic](https://github.com/jordipons/musicnn/blob/master/basic%20example.ipynb) example for more details on how to depict it):
 
 ~~~~python
 from musicnn.extractor import extractor
