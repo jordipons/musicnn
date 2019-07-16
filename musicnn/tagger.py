@@ -38,8 +38,8 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     Options: False (for NOT printing the tags), True (for printing the tags).
 
     - store_tags: Path where to store the tags.
-    Data format: False (boolean), or string ('file_name.tags').
-    Options: False (for NOT storing the tags), or string (for storing the tags).
+    Data format: string.
+    Options: 'file_name.tags'
 
 
     OUTPUT
