@@ -1,0 +1,8 @@
+# Include the all markdown files and jupyter notebooks
+include *.md
+include *.ipynb
+
+# Include all musicnn/MTT model files
+recursive-include musicnn/MTT *
+
+

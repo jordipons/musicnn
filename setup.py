@@ -5,11 +5,12 @@ with open('README.md') as file:
 
 setup(
     name='musicnn',
-    version='0.1',
+    version='0.1.2',
     description='Pronounced as "musician", musicnn is a set of pre-trained deep convolutional neural networks for music audio tagging',
     author='Jordi Pons',
     url='http://github.com/jordipons/musicnn',
     packages=find_packages(),
+    include_package_data=True,
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
@@ -22,11 +23,11 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
     ],
     keywords='audio music deep learning tagging tensorflow machine listening',
     license='ISC',
     install_requires=['librosa>=0.7.0',
-                      'tensorflow>=1.14.0',
+                      'tensorflow>=1.10',
                       'numpy<1.17,>=1.14.5']
 )
-
