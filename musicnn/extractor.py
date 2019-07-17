@@ -1,6 +1,10 @@
 import numpy as np
 import librosa
+
 import tensorflow as tf
+# disable eager mode for tf.v1 compatibility with tf.v2
+tf.compat.v1.disable_eager_execution()
+
 from musicnn import models
 from musicnn import configuration as config
 
