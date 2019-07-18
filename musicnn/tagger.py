@@ -5,7 +5,7 @@ import numpy as np
 from musicnn.extractor import extractor
 
 
-def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False, print=True, save=False):
+def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False, print_tags=True, save=False):
     ''' Predict the topN tags of the music-clip in file_name with the selected model.
 
     INPUT
@@ -32,7 +32,7 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     Data format: floating point number.
     Example: 1.0
         
-    - print: set it True for printing the tags.
+    - print_tags: set it True for printing the tags.
     Note: although you don't print the tags, these will be returned by the musicnn.tagger.top_tags() function.
     Data format: boolean.
     Options: False (for NOT printing the tags), True (for printing the tags).
@@ -51,7 +51,7 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     taggram, tags = extractor(file_name, model=model, input_length=input_length, input_overlap=input_overlap)
     tags_likelihood_mean = np.mean(taggram, axis=0)
 
-    if print:
+    if print_tags:
         print('[' + file_name + '] Top' + str(topN) + ' tags: ')
 
     if save:
@@ -62,7 +62,7 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     for tag_index in tags_likelihood_mean.argsort()[-topN:][::-1]:
         topN_tags.append(tags[tag_index])
 
-        if print:
+        if print_tags:
             print(' - ' + tags[tag_index])
 
         if save:
@@ -83,40 +83,40 @@ def parse_args():
                         type=str,
                         help='audio file to process')
 
-    parser.add_argument('-m', '--model',
+    parser.add_argument('-m', '--model', metavar='',
                         type=str,
                         default='MTT',
-                        help='select the music audio tagging model to employ',
+                        help='select the music audio tagging model to employ (python -m musicnn.tagger music.mp3 --model MTT)',
                         required=False)
 
-    parser.add_argument('-n', '--topN',
+    parser.add_argument('-n', '--topN', metavar='',
                         type=int,
                         default=3,
-                        help='extract N most likely tags according to the selected model',
+                        help='extract N most likely tags according to the selected model (python -m musicnn.tagger music.mp3 --topN 10)',
                         required=False)
 
-    parser.add_argument('-len', '--input_length',
+    parser.add_argument('-len', '--length', metavar='',
                         type=float,
                         default=3.0,
-                        help='length (in seconds) of the input spectrogram patches',
+                        help='length (in seconds) of the input spectrogram patches (python -m musicnn.tagger music.mp3 -len 3.1)',
                         required=False)
 
-    parser.add_argument('-ov', '--input_overlap',
+    parser.add_argument('-ov', '--overlap', metavar='',
                         type=float,
                         default=False,
-                        help='ammount of overlap (in seconds) of the input spectrogram patches',
+                        help='ammount of overlap (in seconds) of the input spectrogram patches (python -m musicnn.tagger music.mp3 -ov 1.0)',
                         required=False)
 
     parser.add_argument('-p', '--print',
                         default=False, 
                         action='store_true',
-                        help='employ --print_tags (or -p) for printing the tags',
+                        help='employ --print flag for printing the tags (python -m musicnn.tagger music.mp3 --print)',
                         required=False)
 
-    parser.add_argument('-s', '--save',
+    parser.add_argument('-s', '--save', metavar='',
                         type=str,
                         default=False,
-                        help='path where to store--model 'MTT' --topN 3 --input_length 3 --input_overlap 3 --print_tags --output file.tags the tags',
+                        help='path where to store/save the tags (python -m musicnn.tagger music.mp3 --save out.tags)',
                         required=False)
 
     args = parser.parse_args()
@@ -133,8 +133,8 @@ if __name__ == '__main__':
     topN_tags = top_tags(params.file_name, 
                          model=params.model, 
                          topN=params.topN, 
-                         input_length=params.input_length, 
-                         input_overlap=params.input_overlap, 
-                         print=params.print_tags,
-                         save=params.output)
+                         input_length=params.length, 
+                         input_overlap=params.overlap, 
+                         print_tags=params.print,
+                         save=params.save)
 

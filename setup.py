@@ -26,6 +26,6 @@ setup(
     keywords='audio music deep learning tagging tensorflow machine listening',
     license='ISC',
     install_requires=['librosa>=0.7.0',
-                      'tensorflow>=1.10',
+                      'tensorflow>=1.14',
                       'numpy<1.17,>=1.14.5']
 )
