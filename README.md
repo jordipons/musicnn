@@ -8,7 +8,7 @@ Do you have questions? Check the [FAQs](https://github.com/jordipons/musicnn/blo
 ## Installation
 ```pip install musicnn```
 
-or from source:
+or from source (to get all the documentation, including the Jupyter Notebooks):
 
 ``` git clone https://github.com/jordipons/musicnn.git```
 
