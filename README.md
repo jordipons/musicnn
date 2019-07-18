@@ -34,7 +34,7 @@ From the **command-line**, print to the topN tags on the screen:
 
 ~~~~
 python -m musicnn.tagger file_name.ogg --print
-python -m musicnn.tagger file_name.au --model 'MTT' --topN 3 --input_length 3 --input_overlap 1 --print
+python -m musicnn.tagger file_name.au --model 'MTT' --topN 3 --input_length 3 --input_overlap 1.5 --print
 ~~~~~
 
 or save to a file:
