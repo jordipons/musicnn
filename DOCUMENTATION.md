@@ -3,9 +3,9 @@
 ### Python interface
 
 ```python
-tags = musicnn.tagger.top_tags(file_name, model='MTT', top_n=3, input_length=3, input_overlap=None, print=True, save_tags=False)
+tags = musicnn.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, print=True, save_tags=False)
 ```
-Predict the `top_n` tags of the music-clip in `file_name` with the selected `model`.  
+Predict the `topN` tags of the music-clip in `file_name` with the selected `model`.  
 
 **Input**
 - **file_name:** path to the music file to tag.  
@@ -14,7 +14,7 @@ Predict the `top_n` tags of the music-clip in `file_name` with the selected `mod
 - **model:** select the music audio tagging model.  
 *Data format:* string.  
 *Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).  To know more about this model, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
-- **top_n:** extract N most likely tags according to the selected model.  
+- **topN:** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Example:* 3
 - **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
@@ -34,7 +34,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Example:* 'file_name.tags'  
   
 **Output**
-- **tags:** `top_n` most likely tags of the music-clip in `file_name` considering the selected `model`.    
+- **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
 *Data format:* list.  
 *Example:* ['synth', 'techno']
 ***************
@@ -79,9 +79,9 @@ This is the length of the data that is going to be fed to the model. In other wo
 ### Command-line interface
 
 ```
-python -m musicnn.tagger file_name --model 'MTT' --top_n 3 --input_length 3 --input_overlap 3 --print --save file.tags
+python -m musicnn.tagger file_name --model 'MTT' --topN 3 --input_length 3 --input_overlap 3 --print --save file.tags
 ```
-Predict the `top_n` tags of the music-clip in `file_name` with the selected `model`.  
+Predict the `topN` tags of the music-clip in `file_name` with the selected `model`.  
 
 **Arguments**
 - **file_name:** path to the music file to tag.  
@@ -92,10 +92,10 @@ Predict the `top_n` tags of the music-clip in `file_name` with the selected `mod
 *Options:* MTT (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).  To know more about this model, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).  
 *Default:* MTT  
 *Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --model MSD`  
-- **--top_n (-n):** extract N most likely tags according to the selected model.  
+- **--topN (-n):** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Default:* 3  
-*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --top_n 10`  
+*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --topN 10`  
 - **--input_length (-len):** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musicnn/blob/master/basic%20example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) examples to know more about that.   
 *Data format:* floating point number.  
@@ -116,4 +116,4 @@ This is the length of the data that is going to be fed to the model. In other wo
 
   
 **Output**
-- **tags:** `top_n` most likely tags of the music-clip in `file_name` considering the selected `model`.    
+- **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
