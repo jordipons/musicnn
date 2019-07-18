@@ -6,11 +6,13 @@ Check the [documentation](https://github.com/jordipons/musicnn/blob/master/DOCUM
 Do you have questions? Check the [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 
 ## Installation
+```pip install musicnn```
+
+or from source:
+
 ``` git clone https://github.com/jordipons/musicnn.git```
 
-``` pip install numpy librosa```
-
-```pip install tensorflow``` or ```pip install tensorflow-gpu``` (if you have a GPU)
+``` python setupy.py install```
 
 ## Predict tags
 
@@ -31,15 +33,15 @@ top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 From the **command-line**, print to the topN tags on the screen:
 
 ~~~~
-python -m musicnn.tagger ./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3 --topN 10 --print_tags
-python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --topN 3 --print_tags
+python -m musicnn.tagger file_name.wav --topN 10 --print_tags
+python -m musicnn.tagger file_name.au --topN 3 --print_tags
 ~~~~~
 
 or save to a file:
 
 ~~~~
-python -m musicnn.tagger ./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3 --topN 10 --output out.tags
-python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --topN 3 --output out.tags
+python -m musicnn.tagger file_name.wav --topN 10 --output out.tags
+python -m musicnn.tagger file_name.mp3 --topN 3 --output out.tags
 ~~~~
 
 ## Extract the Taggram
