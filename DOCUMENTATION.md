@@ -3,9 +3,9 @@
 ### Python interface
 
 ```python
-tags = musicnn.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, print_tags=True)
+tags = musicnn.tagger.top_tags(file_name, model='MTT', top_n=3, input_length=3, input_overlap=None, print=True, save_tags=False)
 ```
-Predict the `topN` tags of the music-clip in `file_name` with the selected `model`.  
+Predict the `top_n` tags of the music-clip in `file_name` with the selected `model`.  
 
 **Input**
 - **file_name:** path to the music file to tag.  
@@ -14,7 +14,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 - **model:** select the music audio tagging model.  
 *Data format:* string.  
 *Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).  To know more about this model, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
-- **topN:** extract N most likely tags according to the selected model.  
+- **top_n:** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Example:* 3
 - **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
@@ -25,16 +25,16 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Note:* Set it considering the `input_length`.  
 *Data format:* floating point number.  
 *Example:* 1.0
-- **print_tags:** set it `True` for printing the tags.  
+- **print:** set it `True` for printing the tags.  
 *Note:* although you don't print the tags, these will be returned by the `musicnn.tagger.top_tags()` function.  
 *Data format:* boolean.  
 *Options:* `False` (for NOT printing the tags), `True` (for printing the tags).  
-- **store_tags:** Path where to store the tags.  
+- **save_tags:** Path where to store/save the tags.  
 *Data format:* string.  
 *Example:* 'file_name.tags'  
   
 **Output**
-- **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
+- **tags:** `top_n` most likely tags of the music-clip in `file_name` considering the selected `model`.    
 *Data format:* list.  
 *Example:* ['synth', 'techno']
 ***************
@@ -51,9 +51,6 @@ Extract the `taggram` (the temporal evolution of tags) and `features` (intermedi
 - **model:** select the music audio tagging model.  
 *Data format:* string.  
 *Options:* 'MTT' (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).  To know more about this model, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
-- **topN:** extract N most likely tags according to the selected model.  
-*Data format:* integer.  
-*Example:* 3
 - **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musicnn/blob/master/basic%20example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) examples to know more about that.   
 *Data format:* floating point number.  
@@ -82,9 +79,9 @@ This is the length of the data that is going to be fed to the model. In other wo
 ### Command-line interface
 
 ```
-python -m musicnn.tagger file_name --model 'MTT' --topN 3 --input_length 3 --input_overlap 3 --print_tags --output file.tags
+python -m musicnn.tagger file_name --model 'MTT' --top_n 3 --input_length 3 --input_overlap 3 --print --save file.tags
 ```
-Predict the `topN` tags of the music-clip in `file_name` with the selected `model`.  
+Predict the `top_n` tags of the music-clip in `file_name` with the selected `model`.  
 
 **Arguments**
 - **file_name:** path to the music file to tag.  
@@ -94,29 +91,29 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 *Data format:* string.  
 *Options:* MTT (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).  To know more about this model, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).  
 *Default:* MTT  
-*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --model MTT`  
-- **--topN (-N):** extract N most likely tags according to the selected model.  
+*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --model MSD`  
+- **--top_n (-n):** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Default:* 3  
-*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --topN 10`  
+*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --top_n 10`  
 - **--input_length (-len):** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musicnn/blob/master/basic%20example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) examples to know more about that.   
 *Data format:* floating point number.  
 *Default:* 3.0  
-*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --input_length 3.1`  
+*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 -len 3.1`  
 - **--input_overlap (-ov):** ammount of overlap (in seconds) of the input spectrogram patches.  
 *Note:* Set it considering the `input_length`.  
 *Data format:* floating point number.  
 *Default:* 3.0  
-*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --input_overlap 1.0`  
-- **--print_tags (-p):** employ this flag for printing the tags.  
+*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 -ov 1.0`  
+- **--print (-p):** employ this flag for printing the tags.  
 *Data format:* boolean.  
-*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --print_tags`  
-- **--output  (-o):** Path where to store the tags.  
+*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --print`  
+- **--save  (-s):** Path where to store/save the tags.  
 *Data format:* string.  
 *Output data format:* csv.  
-*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --output out.tags`  
+*Example:* `python -m musicnn.tagger ./audio/TRWJAZW128F42760DD_test.mp3 --save out.tags`  
 
   
 **Output**
-- **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
+- **tags:** `top_n` most likely tags of the music-clip in `file_name` considering the selected `model`.    
