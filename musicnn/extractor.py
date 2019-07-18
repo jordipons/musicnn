@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import librosa
 
@@ -135,7 +136,7 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extra
     sess = tf.compat.v1.Session()
     sess.run(tf.compat.v1.global_variables_initializer())
     saver = tf.compat.v1.train.Saver()
-    saver.restore(sess, './musicnn/' + model + '/') 
+    saver.restore(sess, os.path.dirname(__file__)+'/'+model+'/') 
 
     # batching data
     print('Computing spectrogram (w/ librosa) and tags (w/ tensorflow)..')

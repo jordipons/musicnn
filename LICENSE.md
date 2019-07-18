@@ -1,4 +1,4 @@
-Copyright (c) 2019, Jordi Pons (www.jordipons.me).
+Copyright (c) Music Technology Group, Universitat Pompeu Fabra 2019. Code developed by Jordi Pons (www.jordipons.me).
 
 Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
 

@@ -5,7 +5,7 @@ with open('README.md') as file:
 
 setup(
     name='musicnn',
-    version='0.1.2',
+    version='0.0.1',
     description='Pronounced as "musician", musicnn is a set of pre-trained deep convolutional neural networks for music audio tagging',
     author='Jordi Pons',
     url='http://github.com/jordipons/musicnn',
@@ -21,8 +21,6 @@ setup(
         "Intended Audience :: Science/Research",
         'Topic :: Multimedia :: Sound/Audio :: Analysis',
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.5",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
     ],
     keywords='audio music deep learning tagging tensorflow machine listening',
