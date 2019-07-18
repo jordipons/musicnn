@@ -10,6 +10,12 @@ def define_model(x, is_training, model, num_classes):
     if model == 'MTT':
         return build_model(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
 
+    elif model == 'MSD':
+        return build_model(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
+
+    elif model == 'MSD_big':
+        return build_model(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
+
 
 def build_model(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_midend=64, num_units_backend=200):
 

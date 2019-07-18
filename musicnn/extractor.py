@@ -109,7 +109,7 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extra
     # select model
     if model == 'MTT':
         labels = config.MTT_LABELS
-    elif model == 'MSD':
+    elif 'MSD' in model:
         labels = config.MSD_LABELS
     num_classes = len(labels)
 
