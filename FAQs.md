@@ -22,8 +22,8 @@
 `./audio/TRWJAZW128F42760DD_test.mp3` is an instrumental Muddy Waters song-excerpt from the test set of the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split) called Screamin' And Cryin' (Live In Warsaw 1976).
 
 * **Which audio formats does `musicnn` support?** We rely on `librosa` to read audio files. `librosa` uses [soundfile](https://github.com/bastibe/PySoundFile) and [audioread](https://github.com/sampsyo/audioread) for reading audio.
-As of v0.7, librosa uses `soundfile` by default, and falls back on `audioread` only when dealing with codecs unsupported by `soundfile` (notably, MP3, and some variants of WAV).
-For a list of codecs supported by `soundfile`, see the [libsndfile documentation](http://www.mega-nerd.com/libsndfile/).
+As of v0.7, `librosa` uses soundfile by default, and falls back on audioread only when dealing with codecs unsupported by soundfile (notably, MP3, and some variants of WAV).
+For a list of codecs supported by soundfile, see the [libsndfile documentation](http://www.mega-nerd.com/libsndfile/).
 
 * **Which sampling rate, window and hop size were used to compute the log-mel spectrograms?** We compute the STFT of a downsampled signal at 16kHz, with a Hanning window of length 512 (50% overlap). We use 96 mel-bands, and we apply a logarithmic compression to it (`np.log10(10000·x + 1)`).
 
