@@ -33,8 +33,8 @@ top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 From the **command-line**, print to the topN tags on the screen:
 
 ~~~~
-python -m musicnn.tagger file_name.wav --topN 10 --print_tags
-python -m musicnn.tagger file_name.au --topN 3 --print_tags
+python -m musicnn.tagger file_name.ogg --print-tags
+python -m musicnn.tagger file_name.au --topN 3 --print-tags
 ~~~~~
 
 or save to a file:
