@@ -19,14 +19,14 @@ or, to get all the documentation (including the Jupyter Notebooks), install from
 From within **python**, you can estimate the topN tags:
 ~~~~python
 from musicnn.tagger import top_tags
-top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT', topN=10)
+top_tags('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT', top_n=10)
 ~~~~
 >['techno', 'electronic', 'synth', 'fast', 'beat', 'drums', 'no vocals', 'no vocal', 'dance', 'ambient']
 
 Let's try another song!
 
 ~~~~python
-top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
+top_tags('./audio/TRWJAZW128F42760DD_test.mp3')
 ~~~~
 >['guitar', 'piano', 'fast']
 
