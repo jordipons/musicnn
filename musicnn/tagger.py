@@ -81,42 +81,42 @@ def parse_args():
 
     parser.add_argument('file_name',
                         type=str,
-                        help='Audio file to process')
+                        help='audio file to process')
 
-    parser.add_argument('-m', '--model', dest='model',
+    parser.add_argument('-m', '--model',
                         type=str,
                         default='MTT',
-                        help='Select the music audio tagging model to employ',
+                        help='select the music audio tagging model to employ',
                         required=False)
 
-    parser.add_argument('-N', '--topN', dest='topN',
+    parser.add_argument('-n', '--topN',
                         type=int,
                         default=3,
-                        help='Extract N most likely tags according to the selected model',
+                        help='extract N most likely tags according to the selected model',
                         required=False)
 
-    parser.add_argument('-len', '--input_length', dest='input_length',
+    parser.add_argument('-len', '--input_length',
                         type=float,
                         default=3.0,
-                        help='Length (in seconds) of the input spectrogram patches',
+                        help='length (in seconds) of the input spectrogram patches',
                         required=False)
 
-    parser.add_argument('-ov', '--input_overlap', dest='input_overlap',
+    parser.add_argument('-ov', '--input_overlap',
                         type=float,
                         default=False,
-                        help='Ammount of overlap (in seconds) of the input spectrogram patches',
+                        help='ammount of overlap (in seconds) of the input spectrogram patches',
                         required=False)
 
-    parser.add_argument('-p', '--print', dest='print',
+    parser.add_argument('-p', '--print',
                         default=False, 
                         action='store_true',
-                        help='Employ --print_tags (or -p) for printing the tags',
+                        help='employ --print_tags (or -p) for printing the tags',
                         required=False)
 
-    parser.add_argument('-o', '--output', dest='output',
+    parser.add_argument('-s', '--save',
                         type=str,
                         default=False,
-                        help='Path where to store the tags',
+                        help='path where to store--model 'MTT' --topN 3 --input_length 3 --input_overlap 3 --print_tags --output file.tags the tags',
                         required=False)
 
     args = parser.parse_args()
