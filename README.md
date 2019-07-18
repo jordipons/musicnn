@@ -40,7 +40,7 @@ python -m musicnn.tagger file_name.au --model 'MTT' --topN 3 --length 3 --overla
 or save to a file:
 
 ~~~~
-python -m musicnn.tagger file_name.wav --output out.tags
+python -m musicnn.tagger file_name.wav --save out.tags
 python -m musicnn.tagger file_name.mp3 --model 'MTT' --topN 10 --length 3 --overlap 1 --print --save out.tags
 ~~~~
 
