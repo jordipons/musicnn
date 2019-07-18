@@ -33,15 +33,15 @@ top_tags('./audio/TRWJAZW128F42760DD_test.mp3', model='MTT', topN=3)
 From the **command-line**, print to the topN tags on the screen:
 
 ~~~~
-python -m musicnn.tagger file_name.ogg --print-tags
-python -m musicnn.tagger file_name.au --topN 5 --model 'MTT' --topN 3 --input-length 3 --input-overlap 3 --print-tags --output out.tags
+python -m musicnn.tagger file_name.ogg --print
+python -m musicnn.tagger file_name.au --topN 5 --model 'MTT' --topN 3 --input_length 3 --input_overlap 3 --print --output out.tags
 ~~~~~
 
 or save to a file:
 
 ~~~~
 python -m musicnn.tagger file_name.wav --output out.tags
-python -m musicnn.tagger file_name.mp3 --topN 10 --model 'MTT' --topN 3 --input-length 3 --input-overlap 3 --print-tags --output out.tags
+python -m musicnn.tagger file_name.mp3 --topN 10 --model 'MTT' --topN 3 --input_length 3 --input_overlap 3 --print --output out.tags
 ~~~~
 
 ## Extract the Taggram
@@ -54,6 +54,6 @@ taggram, tags = extractor('./audio/joram-moments_of_clarity-08-solipsism-59-88.m
 ~~~~
 ![Taggram](./images/taggram.png "Taggram")
 
-The analyzed music clips are included in the `./audio/` folder of this repository. 
+The above analyzed music clips are included in the `./audio/` folder of this repository. 
 
 You can listen to those and evaluate `musicnn` yourself!
