@@ -5,7 +5,7 @@ import numpy as np
 from musicnn.extractor import extractor
 
 
-def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False, print_tags=True, store_tags=False):
+def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False, print=True, save=False):
     ''' Predict the topN tags of the music-clip in file_name with the selected model.
 
     INPUT
@@ -32,12 +32,12 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     Data format: floating point number.
     Example: 1.0
         
-    - print_tags: set it True for printing the tags.
+    - print: set it True for printing the tags.
     Note: although you don't print the tags, these will be returned by the musicnn.tagger.top_tags() function.
     Data format: boolean.
     Options: False (for NOT printing the tags), True (for printing the tags).
 
-    - store_tags: Path where to store the tags.
+    - save: Path where to store/save the tags.
     Data format: string.
     Example: 'file_name.tags'
 
@@ -51,24 +51,24 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     taggram, tags = extractor(file_name, model=model, input_length=input_length, input_overlap=input_overlap)
     tags_likelihood_mean = np.mean(taggram, axis=0)
 
-    if print_tags:
+    if print:
         print('[' + file_name + '] Top' + str(topN) + ' tags: ')
 
-    if store_tags:
-        to = open(store_tags, 'a')   
+    if save:
+        to = open(save, 'a')   
         to.write(file_name + ',' + model + ',input_length=' + str(input_length) + ',input_overlap=' + str(input_overlap)) 
 
     topN_tags = []
     for tag_index in tags_likelihood_mean.argsort()[-topN:][::-1]:
         topN_tags.append(tags[tag_index])
 
-        if print_tags:
+        if print:
             print(' - ' + tags[tag_index])
 
-        if store_tags:
+        if save:
             to.write(',' + tags[tag_index])
 
-    if store_tags:
+    if save:
         to.write('\n')
         to.close()
             
@@ -107,7 +107,7 @@ def parse_args():
                         help='Ammount of overlap (in seconds) of the input spectrogram patches',
                         required=False)
 
-    parser.add_argument('-p', '--print_tags', dest='print_tags',
+    parser.add_argument('-p', '--print', dest='print',
                         default=False, 
                         action='store_true',
                         help='Employ --print_tags (or -p) for printing the tags',
@@ -135,6 +135,6 @@ if __name__ == '__main__':
                          topN=params.topN, 
                          input_length=params.input_length, 
                          input_overlap=params.input_overlap, 
-                         print_tags=params.print_tags,
-                         store_tags=params.output)
+                         print=params.print_tags,
+                         save=params.output)
 
