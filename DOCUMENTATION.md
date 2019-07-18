@@ -79,7 +79,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 ### Command-line interface
 
 ```
-python -m musicnn.tagger file_name --model 'MTT' --topN 3 --input_length 3 --input_overlap 3 --print --save file.tags
+python -m musicnn.tagger file_name --model 'MTT' --topN 3 --length 3 --overlap 3 --print --save file.tags
 ```
 Predict the `topN` tags of the music-clip in `file_name` with the selected `model`.  
 
