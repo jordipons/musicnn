@@ -1,5 +1,5 @@
 # musicnn
-Pronounced as "musician", `musicnn` is a set of pre-trained deep convolutional neural networks for music audio tagging.
+Pronounced as "musician", `musicnn` is a set of pre-trained musically motivated convolutional neural networks for music audio tagging. It also includes some pre-trained vgg baselines.
 
 Check the [documentation](https://github.com/jordipons/musicnn/blob/master/DOCUMENTATION.md) and some [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples for additional ideas on how to use `musicnn`.
 
