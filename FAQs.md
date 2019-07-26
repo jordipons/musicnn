@@ -4,7 +4,7 @@
 
 * **I miss a functionality. How can I get it?** `musicnn` is fairly simple. Feel free to expand it as you wish! Tell us if you think this new functionality is going to be useful for the rest of us.
 
-* **Why `musicnn` contains vgg models?** Because they are nice baseline, and because people like to use computer vision models for spectrograms. Hence, in this repository you can find `musicnn`-based models (musically motivated convolutional neural networks) and vggs (a computer vision architecture applied to audio).
+* **Why `musicnn` contains vgg models?** Because they are a nice baseline, and because people like to use computer vision models for spectrograms. Hence, in this repository you can find `musicnn`-based models (musically motivated convolutional neural networks) and vggs (a computer vision architecture applied to audio).
 
 * **Which is the architecture that `musicnn`-based models employ?** They use a [musically motivated CNN](http://mtg.upf.edu/node/3508) frontend, some [dense layers](https://arxiv.org/abs/1608.06993) in the mid-end, and a [temporal-pooling](https://arxiv.org/abs/1711.02520) back-end. In this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) we provide further details about the model.
 
