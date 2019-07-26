@@ -94,7 +94,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 - **file_name:** path to the music file to tag.  
 *Data format:* string.  
 *Example:* `python -m musicnn.tagger music.mp3`  
-- **--model (-m):** select the music audio tagging model.  
+- **--model (-mod):** select the music audio tagging model.  
 *Data format:* string.  
 *Options:* MTT (model trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset).  To know more about this model, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).  
 *Default:* MTT  
