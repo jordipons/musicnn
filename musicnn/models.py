@@ -10,17 +10,24 @@ def define_model(x, is_training, model, num_classes):
     if model == 'MTT':
         return build_model(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
 
-    elif model == 'MSD':
-        return build_model(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
-
-    elif model == 'MSD_big': # not worth?
-        return build_model(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
-
     elif model == 'MTT_vgg128':
         return vgg(x, is_training, num_classes, 128)
 
     elif model == 'MTT_vgg32':  # not worth? 
         return vgg(x, is_training, num_classes, 32)
+
+    elif model == 'MSD':
+        return build_model(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
+
+    elif model == 'MSD_big_327': # not worth?
+        return build_model(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
+
+    elif model == 'MSD_big':
+        return build_model(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
+
+    elif model == 'MSD_vgg':
+        # TODO 128
+        return vgg(x, is_training, num_classes, 128)
 
 
 def build_model(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_midend=64, num_units_backend=200):
