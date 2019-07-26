@@ -17,7 +17,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 *Example:* './audio/TRWJAZW128F42760DD_test.mp3'
 - **model:** select a music audio tagging model.  
 *Data format:* string.  
-*Options:* `'MTT'`, `'MTT_vgg'`, `'MSD'`, `'MSD_big'` or `'MSD_vgg'`.  
+*Options:* `'MTT_musicnn'`, `'MTT_vgg'`, `'MSD_musicnn'`, `'MSD_musicnn_big'` or `'MSD_vgg'`.  
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
 To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
@@ -58,7 +58,7 @@ Extract the `taggram` (the temporal evolution of tags) and `features` (intermedi
 *Example:* './audio/TRWJAZW128F42760DD_test.mp3'
 - **model:** select a music audio tagging model.  
 *Data format:* string.  
-*Options:* `'MTT'`, `'MTT_vgg'`, `'MSD'`, `'MSD_big'` or `'MSD_vgg'`.  
+*Options:* `'MTT_musicnn'`, `'MTT_vgg'`, `'MSD_musicnn'`, `'MSD_musicnn_big'` or `'MSD_vgg'`.  
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
 To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
@@ -102,7 +102,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 *Example:* `python -m musicnn.tagger music.mp3`  
 - **--model (-mod):** select a music audio tagging model.  
 *Data format:* string.  
-*Options:* `'MTT'`, `'MTT_vgg'`, `'MSD'`, `'MSD_big'` or `'MSD_vgg'`.  
+*Options:* `'MTT_musicnn'`, `'MTT_vgg'`, `'MSD_musicnn'`, `'MSD_musicnn_big'` or `'MSD_vgg'`.  
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
 To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
