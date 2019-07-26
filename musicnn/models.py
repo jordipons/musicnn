@@ -38,7 +38,7 @@ def build_model(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_mid
     frontend_features = tf.concat(frontend_features_list, 2)
 
     ### mid-end ### dense layers
-    midend_features_list = midend(frontend_features, is_training, num_classes, num_filt_midend, type)
+    midend_features_list = midend(frontend_features, is_training, num_filt_midend)
     # dense connection: concatnate features coming from different layers of the front- and mid-end
     midend_features = tf.concat(midend_features_list, 2)
 
@@ -130,7 +130,7 @@ def tempo_block(inputs, filters, kernel_size, is_training, padding="same", activ
     return tf.squeeze(pool, [2])
 
 
-def midend(front_end_output, is_training, num_classes, num_filt, type):
+def midend(front_end_output, is_training, num_filt):
 
     front_end_output = tf.expand_dims(front_end_output, 3)
 
