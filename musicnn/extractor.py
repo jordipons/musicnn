@@ -107,7 +107,7 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extra
     '''
     
     # select model
-    if model == 'MTT':
+    if 'MTT' in model:
         labels = config.MTT_LABELS
     elif 'MSD' in model:
         labels = config.MSD_LABELS
@@ -125,7 +125,10 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extra
     with tf.name_scope('model'):
         x = tf.compat.v1.placeholder(tf.float32, [None, n_frames, config.N_MELS])
         is_training = tf.compat.v1.placeholder(tf.bool)
-        y, timbral, temporal, cnn1, cnn2, cnn3, mean_pool, max_pool, penultimate = models.define_model(x, is_training, model, num_classes)
+        if 'vgg' in model:
+            y = models.define_model(x, is_training, model, num_classes)
+        else:
+            y, timbral, temporal, cnn1, cnn2, cnn3, mean_pool, max_pool, penultimate = models.define_model(x, is_training, model, num_classes)
         normalized_y = tf.nn.sigmoid(y)
 
     # tensorflow: loading model

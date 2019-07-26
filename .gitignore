@@ -6,3 +6,4 @@ build/*
 dist/*
 env/*
 musicnn.egg-info/*
+audio/more/*

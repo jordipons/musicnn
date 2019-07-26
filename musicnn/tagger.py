@@ -83,7 +83,7 @@ def parse_args():
                         type=str,
                         help='audio file to process')
 
-    parser.add_argument('-m', '--model', metavar='',
+    parser.add_argument('-mod', '--model', metavar='',
                         type=str,
                         default='MTT',
                         help='select the music audio tagging model to employ (python -m musicnn.tagger music.mp3 --model MTT)',
