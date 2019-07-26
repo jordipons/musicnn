@@ -30,7 +30,7 @@ For a list of codecs supported by soundfile, see the [libsndfile documentation](
 
 * **Which sampling rate, window and hop size were used to compute the log-mel spectrograms?** We compute the STFT of a downsampled signal at 16kHz, with a Hanning window of length 512 (50% overlap). We use 96 mel-bands, and we apply a logarithmic compression to it (`np.log10(10000·x + 1)`).
 
-* **I love this library! How can I send you money?** First, you will need to contact me1 [www.jordipons.me/about-me/](http://www.jordipons.me/about-me/)
+* **I love this library! How can I send you money?** First, you will need to contact me! [www.jordipons.me/about-me/](http://www.jordipons.me/about-me/)
 
 # Are you using musicnn?
 If you are using it for academic works, please cite us:
