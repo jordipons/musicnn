@@ -64,7 +64,7 @@ def batch_data(audio_file, n_frames, overlap):
 
 
 def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extract_features=False):
-    '''Extract the taggram (the temporal evolution of tags) and features (intermediate representations of the model) of the music-clip in file_name with the selected model.
+    '''Extract the taggram (the temporal evolution of tags) and, optionally, the features (intermediate representations of the model) of the music-clip in file_name with the selected model.
 
     INPUT
 
