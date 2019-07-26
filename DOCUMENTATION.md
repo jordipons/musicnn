@@ -22,7 +22,7 @@ To know more about these models, check our [advanced example](https://github.com
 *Example:* 3
 - **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples to know more about that.  
-*Recommended value:* 3, because it was trained with 3 second inputs.  
+*Recommended value:* 3, because the models were trained with 3 second inputs.  
 *Data format:* floating point number.  
 *Example:* 3.1
 - **input_overlap:** ammount of overlap (in seconds) of the input spectrogram patches.  
@@ -60,7 +60,7 @@ Extract the `taggram` (the temporal evolution of tags) and `features` (intermedi
 To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 - **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples to know more about that.   
-*Recommended value:* 3, because it was trained with 3 second inputs.  
+*Recommended value:* 3, because the models were trained with 3 second inputs.  
 *Data format:* floating point number.  
 *Example:* 3.1
 - **input_overlap:** ammount of overlap (in seconds) of the input spectrogram patches.  
@@ -109,7 +109,7 @@ To know more about these models, check our [advanced example](https://github.com
 *Example:* `python -m musicnn.tagger music.mp3 --topN 10`  
 - **--length (-len):** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples to know more about that.   
-*Recommended value:* 3, because it was trained with 3 second inputs.  
+*Recommended value:* 3, because the models were trained with 3 second inputs.  
 *Data format:* floating point number.  
 *Default:* 3.0  
 *Example:* `python -m musicnn.tagger music.mp3 -len 3.1`  
