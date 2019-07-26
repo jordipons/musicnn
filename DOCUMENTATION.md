@@ -1,6 +1,6 @@
 # Documentation
 
-**Explain musicnn. Explain vgg.**
+*Explain musicnn. Explain vgg.*
 
 ### Python interface
 
