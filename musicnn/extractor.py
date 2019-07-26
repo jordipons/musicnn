@@ -72,22 +72,26 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extra
     Data format: string.
     Example: './audio/TRWJAZW128F42760DD_test.mp3'
     
-    - model: select the music audio tagging model.
+    - model: select a music audio tagging model.
     Data format: string.
-    Options: 'MTT' (model trained with the MagnaTagATune dataset). To know more about our this model, check our advanced example and FAQs.
+    Options: 'MTT_musicnn', 'MTT_vgg', 'MSD_musicnn', 'MSD_musicnn_big' or 'MSD_vgg'.
+    MTT models are trained with the MagnaTagATune dataset.
+    MSD models are trained with the Million Song Dataset.
+    To know more about these models, check our advanced example and FAQs.
     
     - input_length: length (in seconds) of the input spectrogram patches. Set it small for real-time applications.
     This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our basic / advanced examples to know more about that.
+    Recommended value: 3, because the models were trained with 3 second inputs.
     Data format: floating point number.
     Example: 3.1
     
     - input_overlap: ammount of overlap (in seconds) of the input spectrogram patches.
     Note: Set it considering the input_length.
     Data format: floating point number.
-    Example: 1
+    Example: 1.0
     
     - extract_features: set it True for extracting the intermediate representations of the model.
-    Data format: True or False (boolean).
+    Data format: boolean.
     Options: False (for NOT extracting the features), True (for extracting the features).
 
     OUTPUT
@@ -100,10 +104,12 @@ def extractor(file_name, model='MTT', input_length=3, input_overlap=False, extra
     Data format: list.
     Example: see our FAQs page for the complete tags list.
     
-    - features: a dictionary containing the outputs of the different layers that the selected model has.
+    - features: if extract_features = True, it outputs a dictionary containing the activations of the different layers the selected model has.
     Data format: dictionary.
-    Keys: ['timbral', 'temporal', 'cnn1', 'cnn2', 'cnn3', 'mean_pool', 'max_pool', 'penultimate']
-    Example: see our advanced examples.
+    Keys (musicnn models): ['timbral', 'temporal', 'cnn1', 'cnn2', 'cnn3', 'mean_pool', 'max_pool', 'penultimate']
+    Keys (vgg models): ['vgg1', 'vgg2', 'vgg3', 'vgg4', 'vgg5']
+    Example: see our musicnn and vgg jupyter notebook examples.
+
     '''
     
     # select model
