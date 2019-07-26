@@ -57,7 +57,7 @@ Extract the `taggram` (the temporal evolution of tags) and `features` (intermedi
 *Options:* `'MTT'`, `'MTT_vgg'`, `'MSD'`, `'MSD_big'` or `'MSD_vgg'`.  
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
-To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
+To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 - **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples to know more about that.   
 *Recommended value:* 3, because it was trained with 3 second inputs.  
