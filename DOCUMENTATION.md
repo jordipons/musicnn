@@ -84,8 +84,8 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Example:* see our [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md) page for the complete tags list.
 - **features:** if `extract_features = True`, it outputs a dictionary containing the activations of the different layers the selected model has.  
 *Data format:* dictionary.  
-*Keys (musicnn model)*: ['timbral',  'temporal', 'cnn1', 'cnn2', 'cnn3', 'mean_pool', 'max_pool', 'penultimate']  
-*Keys (vgg model)*: ['vgg1',  'vgg2', 'vgg3', 'vgg4', 'vgg5']  
+*Keys (musicnn models)*: ['timbral',  'temporal', 'cnn1', 'cnn2', 'cnn3', 'mean_pool', 'max_pool', 'penultimate']  
+*Keys (vgg models)*: ['vgg1',  'vgg2', 'vgg3', 'vgg4', 'vgg5']  
 *Example:* see our [musicnn](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [vgg](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) examples.
 ***************
 
