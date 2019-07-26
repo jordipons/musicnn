@@ -5,7 +5,7 @@ import numpy as np
 from musicnn.extractor import extractor
 
 
-def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False, print_tags=True, save=False):
+def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overlap=False, print_tags=True, save=False):
     ''' Predict the topN tags of the music-clip in file_name with the selected model.
 
     INPUT
@@ -13,33 +13,38 @@ def top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=False
     - file_name: path to the music file to tag.
     Data format: string.
     Example: './audio/TRWJAZW128F42760DD_test.mp3'
-        
-    - model: select the music audio tagging model.
+    
+    - model: select a music audio tagging model.
     Data format: string.
-    Options: 'MTT' (model trained with the MagnaTagATune dataset). To know more about our this model, check our advanced example and FAQs.
-
+    Options: 'MTT_musicnn', 'MTT_vgg', 'MSD_musicnn', 'MSD_musicnn_big' or 'MSD_vgg'.
+    MTT models are trained with the MagnaTagATune dataset.
+    MSD models are trained with the Million Song Dataset.
+    To know more about these models, check our advanced example and FAQs.
+    
     - topN: extract N most likely tags according to the selected model.
     Data format: integer.
     Example: 3
-        
+    
     - input_length: length (in seconds) of the input spectrogram patches. Set it small for real-time applications.
     This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our basic / advanced examples to know more about that.
+    Recommended value: 3, because the models were trained with 3 second inputs.
     Data format: floating point number.
     Example: 3.1
-        
+    
     - input_overlap: ammount of overlap (in seconds) of the input spectrogram patches.
     Note: Set it considering the input_length.
     Data format: floating point number.
     Example: 1.0
-        
-    - print_tags: set it True for printing the tags.
+    
+    - print: set it True for printing the tags.
     Note: although you don't print the tags, these will be returned by the musicnn.tagger.top_tags() function.
     Data format: boolean.
     Options: False (for NOT printing the tags), True (for printing the tags).
-
-    - save: Path where to store/save the tags.
+    
+    - save_tags: Path where to store/save the tags.
     Data format: string.
     Example: 'file_name.tags'
+
 
     OUTPUT
 
@@ -85,7 +90,7 @@ def parse_args():
 
     parser.add_argument('-mod', '--model', metavar='',
                         type=str,
-                        default='MTT',
+                        default='MTT_musicnn',
                         help='select the music audio tagging model to employ (python -m musicnn.tagger music.mp3 --model MTT)',
                         required=False)
 
