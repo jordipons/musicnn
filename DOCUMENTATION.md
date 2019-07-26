@@ -7,7 +7,7 @@ Explain vgg!*
 ### Python interface
 
 ```python
-tags = musicnn.tagger.top_tags(file_name, model='MTT', topN=3, input_length=3, input_overlap=None, print=True, save_tags=False)
+tags = musicnn.tagger.top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overlap=None, print=True, save_tags=False)
 ```
 Predict the `topN` tags of the music-clip in `file_name` with the selected `model`.  
 
@@ -48,7 +48,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 ***************
 
 ```python
-taggram, tags, features = musicnn.extractor.extractor(file_name, model='MTT', input_length=3, input_overlap=None, extract_features=False)
+taggram, tags, features = musicnn.extractor.extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=None, extract_features=False)
 ```
 Extract the `taggram` (the temporal evolution of tags) and `features` (intermediate representations of the model) of the music-clip in `file_name` with the selected `model`.  
 
@@ -92,7 +92,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 ### Command-line interface
 
 ```
-python -m musicnn.tagger file_name --model 'MTT' --topN 3 --length 3 --overlap 3 --print --save file.tags
+python -m musicnn.tagger file_name --model 'MTT_musicnn' --topN 3 --length 3 --overlap 3 --print --save file.tags
 ```
 Predict the `topN` tags of the music-clip in `file_name` with the selected `model`.  
 
@@ -107,7 +107,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
 To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 *Default:* MTT  
-*Example:* `python -m musicnn.tagger music.mp3 --model MTT`  
+*Example:* `python -m musicnn.tagger music.mp3 --model MSD_musicnn`  
 - **--topN (-n):** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Default:* 3  
