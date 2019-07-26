@@ -34,14 +34,14 @@ From the **command-line**, print to the topN tags on the screen:
 
 ~~~~
 python -m musicnn.tagger file_name.ogg --print
-python -m musicnn.tagger file_name.au --model 'MTT' --topN 3 --length 3 --overlap 1.5 --print
+python -m musicnn.tagger file_name.au --model 'MSD_big' --topN 3 --length 3 --overlap 1.5 --print
 ~~~~~
 
 or save to a file:
 
 ~~~~
 python -m musicnn.tagger file_name.wav --save out.tags
-python -m musicnn.tagger file_name.mp3 --model 'MTT' --topN 10 --length 3 --overlap 1 --print --save out.tags
+python -m musicnn.tagger file_name.mp3 --model 'MSD' --topN 10 --length 3 --overlap 1 --print --save out.tags
 ~~~~
 
 ## Extract the Taggram
