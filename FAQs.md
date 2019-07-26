@@ -32,7 +32,7 @@ For a list of codecs supported by soundfile, see the [libsndfile documentation](
 
 * **I love this library! How can I send you money?** First, you will need to contact me! [www.jordipons.me/about-me/](http://www.jordipons.me/about-me/)
 
-# Are you using `musicnn`?
+# Are you using musicnn?
 If you are using it for academic works, please cite us:
 ```
 @inproceedings{pons2018atscale,
