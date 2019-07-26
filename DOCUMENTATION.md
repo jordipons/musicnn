@@ -11,7 +11,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 - **file_name:** path to the music file to tag.  
 *Data format:* string.  
 *Example:* './audio/TRWJAZW128F42760DD_test.mp3'
-- **model:** select the music audio tagging model.  
+- **model:** select a music audio tagging model.  
 *Data format:* string.  
 *Options:* `'MTT'`, `'MTT_vgg'`, `'MSD'`, `'MSD_big'` or `'MSD_vgg'`.  
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
