@@ -13,7 +13,10 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 *Example:* './audio/TRWJAZW128F42760DD_test.mp3'
 - **model:** select the music audio tagging model.  
 *Data format:* string.  
-*Options:* 'MTT' or 'MTT_vgg' (models trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list); dataset) 'MSD', 'MSD_big' or 'MSD_vgg' (model trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
+*Options:* 'MTT', 'MTT_vgg', 'MSD', 'MSD_big' or 'MSD_vgg'.  
+`MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.
+`MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
+To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/advanced%20example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 - **topN:** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Example:* 3
