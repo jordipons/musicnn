@@ -1,8 +1,8 @@
 # Documentation
-1. [Training datasets: `MTT` and `MSD`](#datasets)
-2. [Included models: `musicnn` and `vgg`](#models)
-3. [Python interface](#python)
-4. [Command-line interface](#command)
+- [Training datasets: `MTT` and `MSD`](#datasets)
+- [Included models: `musicnn` and `vgg`](#models)
+- [Python interface](#python)
+- [Command-line interface](#command)
 
 
 ### Training datasets: `MTT` and `MSD` <a name="datasets"></a>
