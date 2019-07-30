@@ -143,7 +143,7 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     saver.restore(sess, os.path.dirname(__file__)+'/'+model+'/') 
 
     # batching data
-    print('Computing spectrogram (w/ librosa) and tags (w/ tensorflow)..')
+    print('Computing spectrogram (w/ librosa) and tags (w/ tensorflow)..', end =" ")
     batch, spectrogram = batch_data(file_name, n_frames, overlap)
 
     # tensorflow: extract features and tags
@@ -217,7 +217,7 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
         taggram = np.concatenate((taggram, np.array(predicted_tags)), axis=0)
 
     sess.close()
-    print('Done!')
+    print('done!')
 
     if extract_features:
         return taggram, labels, features
