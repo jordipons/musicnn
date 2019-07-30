@@ -1,9 +1,25 @@
 # Documentation
 
-*Explain musicnn!  
-Explain musicnn_big!  
-Explain vgg!*
+### Two families of trained models: `musicnn` and `vgg`
+**musicnn** is a musically motivated ..
+<br>
+<img src="./images/musicnn_doc.png" width="750">
+<br>
 
+
+Explain musicnn_big!  
+The same as above, but dense layers x256 instead of 64.
+And temporal pooling backend has 500 units
+
+**vgg** is a computer vision model that we trained ..
+<br>
+<img src="./images/vgg_doc.png" width="750">
+<br>
+
+**datasets**: these are trained considering the `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
+`MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split). 
+
+***************************
 ### Python interface
 
 ```python
@@ -85,7 +101,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 - **features:** if `extract_features = True`, it outputs a dictionary containing the activations of the different layers the selected model has.  
 *Data format:* dictionary.  
 *Keys (musicnn models)*: ['timbral',  'temporal', 'cnn1', 'cnn2', 'cnn3', 'mean_pool', 'max_pool', 'penultimate']  
-*Keys (vgg models)*: ['vgg1',  'vgg2', 'vgg3', 'vgg4', 'vgg5']  
+*Keys (vgg models)*: ['pool1',  'pool2', 'pool3', 'pool4', 'pool5']  
 *Example:* see our [musicnn](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [vgg](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) examples.
 ***************
 

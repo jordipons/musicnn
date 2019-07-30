@@ -7,30 +7,30 @@ tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 def define_model(x, is_training, model, num_classes):
 
-    if model == 'MTT':
-        return build_model(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
+    if model == 'MTT_musicnn':
+        return build_musicnn(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
 
-    elif model == 'MTT_vgg128':
+    elif model == 'MTT_vgg':
         return vgg(x, is_training, num_classes, 128)
 
-    elif model == 'MTT_vgg32':  # not worth? 
-        return vgg(x, is_training, num_classes, 32)
+    #elif model == 'MTT_vgg32':  # not worth? 
+    #    return vgg(x, is_training, num_classes, 32)
 
-    elif model == 'MSD':
-        return build_model(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
+    elif model == 'MSD_musicnn':
+        return build_musicnn(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
 
-    elif model == 'MSD_big_327': # not worth?
-        return build_model(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
+    #elif model == 'MSD_big_327': # not worth?
+    #    return build_musicnn(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
 
-    elif model == 'MSD_big':
-        return build_model(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
+    elif model == 'MSD_musicnn_big':
+        return build_musicnn(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
 
     elif model == 'MSD_vgg':
         # TODO 128
         return vgg(x, is_training, num_classes, 128)
 
 
-def build_model(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_midend=64, num_units_backend=200):
+def build_musicnn(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_midend=64, num_units_backend=200):
 
     ### front-end ### musically motivated CNN
     frontend_features_list = frontend(x, is_training, config.N_MELS, num_filt=1.6, type='7774timbraltemporal')
@@ -258,6 +258,6 @@ def vgg(x, is_training, num_classes, num_filters=32):
                             activation=None,
                             units=num_classes,
                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
-    return output   
+    return output, pool1, pool2, pool3, pool4, pool5   
 
 
