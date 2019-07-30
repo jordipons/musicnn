@@ -51,7 +51,7 @@ To know more about these models, check our [advanced example](https://github.com
 - **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. 
 *Recommended value:* 3, because the models were trained with 3 second inputs.  
-*Observation:* the `vgg` models do not allow for different input lengths, for that reason `vgg` models input_length needs to be set to 3. However, `musicnn` models allow for different input lengths: see this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).
+*Observation:* the `vgg` models do not allow for different input lengths, for that reason `vgg` models input_length needs to be set to 3. However, `musicnn` models allow for different input lengths: see this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).  
 *Data format:* floating point number.  
 *Example:* 3.1
 - **input_overlap:** ammount of overlap (in seconds) of the input spectrogram patches.  
