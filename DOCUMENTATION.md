@@ -16,7 +16,7 @@ The **`MSD`** dataset considers this 50 tags vocabulary: rock, pop, alternative,
 
 For the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split), we also include a larger model with more capacity: the `MSD_musicnn_big`. The same as above, but dense layers have x512 filters (instead of x64) and the temporal-pooling backend has 500 units (instead of 200).
 
-The following models are available: `MTT_musicnn`, `MSD_musicnn`, and `MSD_musicnn_big`.
+The following models are available: `'MTT_musicnn'`, `'MSD_musicnn'`, and `'MSD_musicnn_big'`.
 
 **`vgg`** is a [computer vision](https://www.quora.com/What-is-the-VGG-neural-network) model that we trained for music audio tagging. This [naive adoption](https://arxiv.org/abs/1606.00298) of convolutional neural networks for audio-spectrograms stacks several 3x3 CNN layers with max pooling. For more details about our vgg implementation, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb).
 
@@ -24,7 +24,7 @@ The following models are available: `MTT_musicnn`, `MSD_musicnn`, and `MSD_music
 <img src="./images/vgg_doc.png" width="750">
 <br>
 
-The following models are available: `MTT_vgg`, `MSD_vgg`.
+The following models are available: `'MTT_vgg'`, `'MSD_vgg'`.
 
 
 ***************************
