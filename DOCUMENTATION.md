@@ -1,25 +1,22 @@
 # Documentation
 
 ### Training datasets: `MTT` and `MSD`
-This repository contains pre-trained deep learning models for music audio tagging, and these are trained with two different datasets: the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset (the `MTT`) and the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split) (the `MSD`).
+This repository contains pre-trained deep learning models for music audio tagging, and these are trained with two different datasets: the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset (the `MTT` of approx. 19k training songs) and the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split) (the `MSD` of approx. 200k training songs).
 
 The **`MTT`** dataset considers this 50 tags vocabulary: guitar, classical, slow, techno, strings, drums, electronic, rock, fast, piano, ambient, beat, violin, vocal, synth, female, indian, opera, male, singing, vocals, no vocals, harpsichord, loud, quiet, flute, woman, male vocal, no vocal, pop, soft, sitar, solo, man, classic, choir, voice, new age, dance, male voice, female vocal, beats, harp, cello, no voice, weird, country, metal, female voice, choral.
 
-The `MSD` dataset considers this 50 tags vocabulary: rock, pop, alternative, indie, electronic, female vocalists, dance, 00s, alternative rock, jazz, beautiful, metal, chillout, male vocalists, classic rock, soul, indie rock, Mellow, electronica, 80s, folk, 90s, chill, instrumental, punk, oldies, blues, hard rock, ambient, acoustic, experimental, female vocalist, guitar, Hip-Hop, 70s, party, country, easy listening, sexy, catchy, funk, electro, heavy metal, Progressive rock, 60s, rnb, indie pop, sad, House, happy.
+The **`MSD`** dataset considers this 50 tags vocabulary: rock, pop, alternative, indie, electronic, female vocalists, dance, 00s, alternative rock, jazz, beautiful, metal, chillout, male vocalists, classic rock, soul, indie rock, Mellow, electronica, 80s, folk, 90s, chill, instrumental, punk, oldies, blues, hard rock, ambient, acoustic, experimental, female vocalist, guitar, Hip-Hop, 70s, party, country, easy listening, sexy, catchy, funk, electro, heavy metal, Progressive rock, 60s, rnb, indie pop, sad, House, happy.
 
 ### Included models: `musicnn` and `vgg`
-**musicnn** is a motivated convolutional neural network (CNN) for music audio tagging. It consists of a CNN front-end taht is musically motivated, of a densely connected mid-end, and of a temporal-pooling back-end. For more details about musicnn, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).
+**`musicnn`** is a motivated convolutional neural network (CNN) for music audio tagging. It consists of a CNN front-end that is musically motivated, of a densely connected mid-end, and of a temporal-pooling back-end. For more details about musicnn, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).
 
 <br>
 <img src="./images/musicnn_doc.png" width="750">
 <br>
 
-For the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split), that is the largest publicly available dataset, we also include a 
-Explain musicnn_big!  
-The same as above, but dense layers x256 instead of 64.
-And temporal pooling backend has 500 units
+For the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split), that is the largest publicly available dataset, we also include a larger model with more capacity `MSD_musicnn_big`. The same as above, but dense layers 512 (instead of 64) and the temporal-pooling backend has 500 units (instead of 200)
 
-**vgg** is a [computer vision](https://www.quora.com/What-is-the-VGG-neural-network) model that we trained for music audio tagging. It is a naive convolutional neural network that stacks 3x3 filters + max pooling. For more details about our vgg implementation, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb).
+**`vgg`** is a [computer vision](https://www.quora.com/What-is-the-VGG-neural-network) model that we trained for music audio tagging. It is a naive convolutional neural network that stacks 3x3 filters + max pooling. For more details about our vgg implementation, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb).
 
 <br>
 <img src="./images/vgg_doc.png" width="750">
