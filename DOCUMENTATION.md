@@ -69,7 +69,6 @@ This is the length of the data that is going to be fed to the model. In other wo
 - **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
 *Data format:* list.  
 *Example:* ['synth', 'techno']
-***************
 
 ```python
 taggram, tags, features = musicnn.extractor.extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=None, extract_features=False)
