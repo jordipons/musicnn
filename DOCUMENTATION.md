@@ -1,23 +1,27 @@
 # Documentation
 
-### Two families of trained models: `musicnn` and `vgg`
-**musicnn** is a musically motivated ..
+### Training datasets: `MTT` and `MSD`
+This repository contains pre-trained deep learning models for music audio tagging, and these are trained considering two datasets: the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset (the `MTT`) and the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split) (the `MSD`).
+
+### Included models: `musicnn` and `vgg`
+**musicnn** is a motivated convolutional neural network (CNN) for music audio tagging. It consists of a CNN front-end taht is musically motivated, of a densely connected mid-end, and of a temporal-pooling back-end. For more details about musicnn, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).
+
 <br>
 <img src="./images/musicnn_doc.png" width="750">
 <br>
 
-
+For the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split), that is the largest publicly available dataset, we also include a 
 Explain musicnn_big!  
 The same as above, but dense layers x256 instead of 64.
 And temporal pooling backend has 500 units
 
-**vgg** is a computer vision model that we trained ..
+**vgg** is a [computer vision](https://www.quora.com/What-is-the-VGG-neural-network) model that we trained for music audio tagging. It is a naive convolutional neural network that stacks 3x3 filters + max pooling. For more details about our vgg implementation, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb).
+
 <br>
 <img src="./images/vgg_doc.png" width="750">
 <br>
 
-**datasets**: these are trained considering the `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
-`MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split). 
+
 
 ***************************
 ### Python interface
