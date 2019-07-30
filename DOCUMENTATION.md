@@ -18,7 +18,7 @@ For the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split
 
 The following models are available: `MTT_musicnn`, `MSD_musicnn`, and `MSD_musicnn_big`.
 
-**`vgg`** is a [computer vision](https://www.quora.com/What-is-the-VGG-neural-network) model that we trained for music audio tagging. It is a [naive adoption](https://arxiv.org/abs/1606.00298) of convolutional neural networks for spectrograms that stacks 3x3 filters + max pooling. For more details about our vgg implementation, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb).
+**`vgg`** is a [computer vision](https://www.quora.com/What-is-the-VGG-neural-network) model that we trained for music audio tagging. This [naive adoption](https://arxiv.org/abs/1606.00298) of convolutional neural networks for audio stacks several 3x3 CNN layers with max pooling. For more details about our vgg implementation, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb).
 
 <br>
 <img src="./images/vgg_doc.png" width="750">
