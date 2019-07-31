@@ -4,8 +4,8 @@
 
 [Training datasets: `MTT` and `MSD`](#datasets)  
 [Included models: `musicnn` and `vgg`](#models)  
-[Python interface: tagger.top_tags()](#python_top_tags)  
-[Python interface: extractor()](#python_extractor)  
+[Python interface: tagger.top_tags( )](#python_top_tags)  
+[Python interface: extractor( )](#python_extractor)  
 [Command-line interface](#command)  
 
 ## Training datasets: `MTT` and `MSD` <a name="datasets"></a>
