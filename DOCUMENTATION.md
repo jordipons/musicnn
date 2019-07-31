@@ -4,14 +4,14 @@
 - [Python interface](#python)
 - [Command-line interface](#command)
 
-# Training datasets: `MTT` and `MSD` <a name="datasets"></a>
+## Training datasets: `MTT` and `MSD` <a name="datasets"></a>
 This repository contains pre-trained deep learning models for music audio tagging, and these are trained with two different datasets: the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset (the `MTT` of approx. 19k training songs) and the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split) (the `MSD` of approx. 200k training songs).
 
 The **`MTT`** dataset considers this 50 tags vocabulary: guitar, classical, slow, techno, strings, drums, electronic, rock, fast, piano, ambient, beat, violin, vocal, synth, female, indian, opera, male, singing, vocals, no vocals, harpsichord, loud, quiet, flute, woman, male vocal, no vocal, pop, soft, sitar, solo, man, classic, choir, voice, new age, dance, male voice, female vocal, beats, harp, cello, no voice, weird, country, metal, female voice, choral.
 
 The **`MSD`** dataset considers this 50 tags vocabulary: rock, pop, alternative, indie, electronic, female vocalists, dance, 00s, alternative rock, jazz, beautiful, metal, chillout, male vocalists, classic rock, soul, indie rock, Mellow, electronica, 80s, folk, 90s, chill, instrumental, punk, oldies, blues, hard rock, ambient, acoustic, experimental, female vocalist, guitar, Hip-Hop, 70s, party, country, easy listening, sexy, catchy, funk, electro, heavy metal, Progressive rock, 60s, rnb, indie pop, sad, House, happy.
 
-# Included models: `musicnn` and `vgg` <a name="models"></a>
+## Included models: `musicnn` and `vgg` <a name="models"></a>
 **`musicnn`** is a motivated convolutional neural network (CNN) for music audio tagging. It consists of a CNN front-end that is [musically motivated](https://ieeexplore.ieee.org/abstract/document/7500246/), of a [densely connected](https://arxiv.org/abs/1608.06993) mid-end, and of a [temporal-pooling](https://arxiv.org/abs/1711.02520) back-end. For more details about musicnn, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).
 
 <br>
