@@ -117,6 +117,9 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     elif 'MSD' in model:
         labels = config.MSD_LABELS
     num_classes = len(labels)
+    
+    if 'vgg' in model and input_length != 3:
+        raise ValueError('Set input_length=3, the VGG models cannot handle different input lengths.')
 
     # convert seconds to frames
     n_frames = librosa.time_to_frames(input_length, sr=config.SR, n_fft=config.FFT_SIZE, hop_length=config.FFT_HOP) + 1
