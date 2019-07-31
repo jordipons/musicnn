@@ -63,7 +63,7 @@ def batch_data(audio_file, n_frames, overlap):
     return batch, audio_rep
 
 
-def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=False, extract_features=False):
+def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=False, extract_features=True):
     '''Extract the taggram (the temporal evolution of tags) and, optionally, the features (intermediate representations of the model) of the music-clip in file_name with the selected model.
 
     INPUT
