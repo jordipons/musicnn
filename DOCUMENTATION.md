@@ -4,7 +4,8 @@
 
 [Training datasets: `MTT` and `MSD`](#datasets)  
 [Included models: `musicnn` and `vgg`](#models)  
-[Python interface](#python)  
+[Python interface: tagger.top_tags()](#python_top_tags)  
+[Python interface: extractor()](#python_extractor)  
 [Command-line interface](#command)  
 
 ## Training datasets: `MTT` and `MSD` <a name="datasets"></a>
@@ -35,7 +36,7 @@ The following models are available: `'MTT_musicnn'`, `'MSD_musicnn'`, and `'MSD_
 
 The following models are available: `'MTT_vgg'`, `'MSD_vgg'`.
 
-## Python interface <a name="python"></a>
+## Python interface: tagger.top_tags() <a name="python_top_tags"></a>
 
 ```python
 tags = musicnn.tagger.top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overlap=None, print=True, save_tags=False)
@@ -77,6 +78,8 @@ To know more about these models, check our [musicnn](https://github.com/jordipon
 - **tags:** `topN` most likely tags of the music-clip in `file_name` considering the selected `model`.    
 *Data format:* list.  
 *Example:* ['synth', 'techno']
+
+## Python interface: extractor() <a name="python_extractor"></a>
 
 ```python
 taggram, tags, features = musicnn.extractor.extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=None, extract_features=False)
