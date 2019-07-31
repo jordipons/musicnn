@@ -30,7 +30,7 @@ top_tags('./audio/TRWJAZW128F42760DD_test.mp3')
 ~~~~
 >['guitar', 'piano', 'fast']
 
-From the **command-line**, print to the topN tags on the screen:
+From the **command-line**, you can also print the topN tags on the screen:
 
 ~~~~
 python -m musicnn.tagger file_name.ogg --print
