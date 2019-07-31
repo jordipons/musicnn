@@ -1,4 +1,7 @@
 # Documentation
+
+#### Table of contents:
+
 - [Training datasets: `MTT` and `MSD`](#datasets)
 - [Included models: `musicnn` and `vgg`](#models)
 - [Python interface](#python)
