@@ -56,14 +56,14 @@ def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overl
     if 'vgg' in model and input_length != 3:
         raise ValueError('Set input_length=3, the VGG models cannot handle different input lengths.')
     
-    taggram, tags = extractor(file_name, model=model, input_length=input_length, input_overlap=input_overlap)
+    taggram, tags = extractor(file_name, model=model, input_length=input_length, input_overlap=input_overlap, extract_features=False)
     tags_likelihood_mean = np.mean(taggram, axis=0)
 
     if print_tags:
         print('[' + file_name + '] Top' + str(topN) + ' tags: ')
 
     if save_tags:
-        to = open(save, 'a')   
+        to = open(save_tags, 'a')   
         to.write(file_name + ',' + model + ',input_length=' + str(input_length) + ',input_overlap=' + str(input_overlap)) 
 
     topN_tags = []
