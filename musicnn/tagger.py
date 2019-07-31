@@ -5,7 +5,7 @@ import numpy as np
 from musicnn.extractor import extractor
 
 
-def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overlap=False, print_tags=True, save=False):
+def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overlap=False, print_tags=True, save_tags=False):
     ''' Predict the topN tags of the music-clip in file_name with the selected model.
 
     INPUT
@@ -59,7 +59,7 @@ def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overl
     if print_tags:
         print('[' + file_name + '] Top' + str(topN) + ' tags: ')
 
-    if save:
+    if save_tags:
         to = open(save, 'a')   
         to.write(file_name + ',' + model + ',input_length=' + str(input_length) + ',input_overlap=' + str(input_overlap)) 
 
@@ -70,10 +70,10 @@ def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overl
         if print_tags:
             print(' - ' + tags[tag_index])
 
-        if save:
+        if save_tags:
             to.write(',' + tags[tag_index])
 
-    if save:
+    if save_tags:
         to.write('\n')
         to.close()
             
@@ -141,5 +141,5 @@ if __name__ == '__main__':
                          input_length=params.length, 
                          input_overlap=params.overlap, 
                          print_tags=params.print,
-                         save=params.save)
+                         save_tags=params.save)
 
