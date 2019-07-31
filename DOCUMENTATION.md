@@ -6,7 +6,7 @@
 [Included models: `musicnn` and `vgg`](#models)  
 [Python interface: music tagger](#python_top_tags)  
 [Python interface: music feature extractor](#python_extractor)  
-[Command-line interface](#command)  
+[Command-line interface_ music tagger](#command)  
 
 ## Training datasets: `MTT` and `MSD` <a name="datasets"></a>
 This repository contains  a set of pre-trained deep convolutional neural networks for music audio tagging, and these are trained with two different datasets: the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset (the `MTT` of ~19k training songs) and the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split) (the `MSD` of ~200k training songs).
@@ -123,7 +123,7 @@ To know more about these models, check our [musicnn](https://github.com/jordipon
 *Keys (vgg models)*: ['pool1',  'pool2', 'pool3', 'pool4', 'pool5']  
 *Example:* see our [musicnn](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [vgg](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) examples.
 
-## Command-line interface <a name="command"></a>
+## Command-line interface: music tagger <a name="command"></a>
 
 ```
 python -m musicnn.tagger file_name --model 'MTT_musicnn' --topN 3 --length 3 --overlap 3 --print --save file.tags
