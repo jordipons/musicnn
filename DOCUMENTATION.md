@@ -18,9 +18,9 @@ The **`MSD`** dataset considers this 50-tags vocabulary: rock, pop, alternative,
 **`musicnn`** is a musically motivated convolutional neural network (CNN) trained for music audio tagging. It consists of a CNN front-end that is [musically motivated](https://ieeexplore.ieee.org/abstract/document/7500246/), of a [densely connected](https://arxiv.org/abs/1608.06993) mid-end, and a [temporal-pooling](https://arxiv.org/abs/1711.02520) back-end is employed for the output layers. For more details about musicnn, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).
 
 <br>
-<center>
-<img src="./images/musicnn_doc.png" width="700">
-</center>
+<p align="center">
+  <img src="./images/musicnn_doc.png" width="700">
+</p>
 <br>
 
 For the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split), we also include a larger model with more capacity: the `MSD_musicnn_big`. The same as above, but dense layers have x512 filters (instead of x64) and the temporal-pooling backend has 500 units (instead of 200).
@@ -30,7 +30,9 @@ The following models are available: `'MTT_musicnn'`, `'MSD_musicnn'`, and `'MSD_
 **`vgg`** is a [computer vision](https://www.quora.com/What-is-the-VGG-neural-network) baseline model that we trained for music audio tagging. This [naive adoption](https://arxiv.org/abs/1606.00298) of convolutional neural networks for audio-spectrograms stacks several 3x3 CNN layers with max pooling. For more details about our vgg implementation, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb).
 
 <br>
+<p align="center">
 <img src="./images/vgg_doc.png" width="750">
+</p>
 <br>
 
 The following models are available: `'MTT_vgg'`, `'MSD_vgg'`.
