@@ -53,6 +53,9 @@ def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overl
     Example: ['synth', 'techno']
     '''
 
+    if 'vgg' in model and input_length != 3:
+        raise ValueError('Set input_length=3, the VGG models cannot handle different input lengths.')
+    
     taggram, tags = extractor(file_name, model=model, input_length=input_length, input_overlap=input_overlap)
     tags_likelihood_mean = np.mean(taggram, axis=0)
 
