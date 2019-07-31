@@ -30,9 +30,7 @@ The following models are available: `'MTT_musicnn'`, `'MSD_musicnn'`, and `'MSD_
 
 The following models are available: `'MTT_vgg'`, `'MSD_vgg'`.
 
------
-
-### Python interface <a name="python"></a>
+## Python interface <a name="python"></a>
 
 ```python
 tags = musicnn.tagger.top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overlap=None, print=True, save_tags=False)
@@ -117,9 +115,7 @@ This is the length of the data that is going to be fed to the model. In other wo
 *Keys (vgg models)*: ['pool1',  'pool2', 'pool3', 'pool4', 'pool5']  
 *Example:* see our [musicnn](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [vgg](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) examples.
 
------
-
-### Command-line interface <a name="command"></a>
+## Command-line interface <a name="command"></a>
 
 ```
 python -m musicnn.tagger file_name --model 'MTT_musicnn' --topN 3 --length 3 --overlap 3 --print --save file.tags
