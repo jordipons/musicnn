@@ -113,7 +113,7 @@ To know more about these models, check our [musicnn](https://github.com/jordipon
 **Output**
 - **taggram:**  expresses the temporal evolution of the tags likelihood.  
 *Data format:* 2D np.ndarray (time, tags).  
-*Example:* see our [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples.  
+*Example:* see our [basic](https://github.com/jordipons/musicnn/blob/master/tagging_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples.  
 - **tags:** list of tags corresponding to the tag-indices of the taggram.  
 *Data format:* list.  
 *Example:* see our [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md) page for the complete tags list.
