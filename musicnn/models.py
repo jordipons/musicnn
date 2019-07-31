@@ -13,20 +13,15 @@ def define_model(x, is_training, model, num_classes):
     elif model == 'MTT_vgg':
         return vgg(x, is_training, num_classes, 128)
 
-    #elif model == 'MTT_vgg32':  # not worth? 
-    #    return vgg(x, is_training, num_classes, 32)
-
     elif model == 'MSD_musicnn':
         return build_musicnn(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
 
-    #elif model == 'MSD_big_327': # not worth?
-    #    return build_musicnn(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
-
     elif model == 'MSD_musicnn_big':
+        # TODO update
         return build_musicnn(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
 
     elif model == 'MSD_vgg':
-        # TODO 128
+        # TODO train
         return vgg(x, is_training, num_classes, 128)
     
     else:
