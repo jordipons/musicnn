@@ -46,7 +46,7 @@ python -m musicnn.tagger file_name.mp3 --model 'MSD_musicnn' --topN 10 --length 
 
 ## Extract the Taggram
 
-You can also compute the taggram using **python** (see our [basic](https://github.com/jordipons/musicnn/blob/master/basic%20example.ipynb) example for more details on how to depict it):
+You can also compute the taggram using **python** (see our [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) example for more details on how to depict it):
 
 ~~~~python
 from musicnn.extractor import extractor
