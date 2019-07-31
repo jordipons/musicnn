@@ -22,7 +22,7 @@ The **`MSD`** dataset considers this 50-tags vocabulary: rock, pop, alternative,
   <img src="./images/musicnn_doc.png" width="700">
 </p>
 
-For the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split), we also include a larger model with more capacity: the `MSD_musicnn_big`. The same as above, but dense layers have x512 filters (instead of x64) and the temporal-pooling backend has 500 units (instead of 200).
+For the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split), we also include a larger model with more capacity: the `MSD_musicnn_big`. This model is based on `musicnn`, but the dense layers mid-end have x512 filters (instead of x64) and the temporal-pooling back-end has 500 units (instead of 200).
 
 The following models are available: `'MTT_musicnn'`, `'MSD_musicnn'`, and `'MSD_musicnn_big'`.
 
