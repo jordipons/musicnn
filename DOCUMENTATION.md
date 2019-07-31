@@ -51,7 +51,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 *Options:* `'MTT_musicnn'`, `'MTT_vgg'`, `'MSD_musicnn'`, `'MSD_musicnn_big'` or `'MSD_vgg'`.  
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
-To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
+To know more about these models, check our [musicnn](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) / [vgg](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) examples, and the [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 - **topN:** extract N most likely tags according to the selected model.  
 *Data format:* integer.  
 *Example:* 3
@@ -92,7 +92,7 @@ Extract the `taggram` (the temporal evolution of tags) and `features` (intermedi
 *Options:* `'MTT_musicnn'`, `'MTT_vgg'`, `'MSD_musicnn'`, `'MSD_musicnn_big'` or `'MSD_vgg'`.  
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
-To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
+To know more about these models, check our [musicnn](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) / [vgg](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) examples, and the [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 - **input_length:** length (in seconds) of the input spectrogram patches. Set it small for real-time applications.   
 This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram.  
 *Recommended value:* 3, because the models were trained with 3 second inputs.   
@@ -136,7 +136,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 *Options:* `'MTT_musicnn'`, `'MTT_vgg'`, `'MSD_musicnn'`, `'MSD_musicnn_big'` or `'MSD_vgg'`.  
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
-To know more about these models, check our [advanced example](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) and [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
+To know more about these models, check our [musicnn](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) / [vgg](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) examples, and the [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 *Default:* 'MTT_musicnn'  
 *Example:* `python -m musicnn.tagger music.mp3 --model MSD_musicnn`  
 - **--topN (-n):** extract N most likely tags according to the selected model.  
