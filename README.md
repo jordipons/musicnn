@@ -1,7 +1,7 @@
 # musicnn
 Pronounced as "musician", `musicnn` is a set of pre-trained musically motivated convolutional neural networks for music audio tagging. This repository also includes some pre-trained [vgg-like](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) baselines.
 
-Check the [documentation](https://github.com/jordipons/musicnn/blob/master/DOCUMENTATION.md) and our [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples to understand how to use `musicnn`.
+Check the [documentation](https://github.com/jordipons/musicnn/blob/master/DOCUMENTATION.md) and our [basic](https://github.com/jordipons/musicnn/blob/master/tagging_example.ipynb) / [advanced](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) examples to understand how to use `musicnn`.
 
 Do you have questions? Check the [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).
 
@@ -46,7 +46,7 @@ python -m musicnn.tagger file_name.mp3 --model 'MSD_musicnn' --topN 10 --length 
 
 ## Extract the Taggram
 
-You can also compute the taggram using **python** (see our [basic](https://github.com/jordipons/musicnn/blob/master/basic_example.ipynb) example for more details on how to depict it):
+You can also compute the taggram using **python** (see our [basic](https://github.com/jordipons/musicnn/blob/master/tagging_example.ipynb) example for more details on how to depict it):
 
 ~~~~python
 from musicnn.extractor import extractor
