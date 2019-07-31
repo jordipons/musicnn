@@ -2,10 +2,10 @@
 
 #### Table of contents
 
-[Training datasets: `MTT` and `MSD`](#datasets)
-[Included models: `musicnn` and `vgg`](#models)
-[Python interface](#python)
-[Command-line interface](#command)
+[Training datasets: `MTT` and `MSD`](#datasets)  
+[Included models: `musicnn` and `vgg`](#models)  
+[Python interface](#python)  
+[Command-line interface](#command)  
 
 ## Training datasets: `MTT` and `MSD` <a name="datasets"></a>
 This repository contains pre-trained deep learning models for music audio tagging, and these are trained with two different datasets: the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset (the `MTT` of approx. 19k training songs) and the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split) (the `MSD` of approx. 200k training songs).
