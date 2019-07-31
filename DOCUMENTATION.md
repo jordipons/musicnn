@@ -39,7 +39,7 @@ The following models are available: `'MTT_vgg'`, `'MSD_vgg'`.
 ## Python interface: music tagger <a name="python_top_tags"></a>
 
 ```python
-tags = musicnn.tagger.top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overlap=None, print=True, save_tags=False)
+tags = musicnn.tagger.top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overlap=None, print_tags=True, save_tags=False)
 ```
 Predict the `topN` tags of the music-clip in `file_name` with the selected `model`.  
 
@@ -66,7 +66,7 @@ To know more about these models, check our [musicnn](https://github.com/jordipon
 *Note:* Set it considering the `input_length`.  
 *Data format:* floating point number.  
 *Example:* 1.0
-- **print:** set it `True` for printing the tags.  
+- **print_tags:** set it `True` for printing the tags.  
 *Note:* although you don't print the tags, these will be returned by the `musicnn.tagger.top_tags()` function.  
 *Data format:* boolean.  
 *Options:* `False` (for NOT printing the tags), `True` (for printing the tags).  
@@ -82,7 +82,7 @@ To know more about these models, check our [musicnn](https://github.com/jordipon
 ## Python interface: music feature extractor <a name="python_extractor"></a>
 
 ```python
-taggram, tags, features = musicnn.extractor.extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=None, extract_features=False)
+taggram, tags, features = musicnn.extractor.extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=None, extract_features=True)
 ```
 Extract the `taggram` (the temporal evolution of tags) and `features` (intermediate representations of the model) of the music-clip in `file_name` with the selected `model`.  
 
