@@ -33,7 +33,6 @@ def define_model(x, is_training, model, num_classes):
         raise ValueError('Model not implemented!')
 
 
-
 def build_musicnn(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_midend=64, num_units_backend=200):
 
     ### front-end ### musically motivated CNN
