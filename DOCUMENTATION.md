@@ -15,7 +15,7 @@ The **`MTT`** dataset considers this 50-tags vocabulary: guitar, classical, slow
 The **`MSD`** dataset considers this 50-tags vocabulary: rock, pop, alternative, indie, electronic, female vocalists, dance, 00s, alternative rock, jazz, beautiful, metal, chillout, male vocalists, classic rock, soul, indie rock, Mellow, electronica, 80s, folk, 90s, chill, instrumental, punk, oldies, blues, hard rock, ambient, acoustic, experimental, female vocalist, guitar, Hip-Hop, 70s, party, country, easy listening, sexy, catchy, funk, electro, heavy metal, Progressive rock, 60s, rnb, indie pop, sad, House, happy.
 
 ## Included models: `musicnn` and `vgg` <a name="models"></a>
-**`musicnn`** is a musically motivated convolutional neural network (CNN) trained for music audio tagging. It consists of a CNN front-end that is [musically motivated](https://ieeexplore.ieee.org/abstract/document/7500246/), of a [densely connected](https://arxiv.org/abs/1608.06993) mid-end, and a [temporal-pooling](https://arxiv.org/abs/1711.02520) is employed as back-end. For more details about musicnn, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).
+**`musicnn`** is a musically motivated convolutional neural network (CNN) trained for music audio tagging. It consists of a CNN front-end that is [musically motivated](https://ieeexplore.ieee.org/abstract/document/7500246/), of a [densely connected](https://arxiv.org/abs/1608.06993) mid-end, and a [temporal-pooling](https://arxiv.org/abs/1711.02520) back-end is employed for the output layers. For more details about musicnn, check this [jupyter notebook](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb).
 
 <br>
 <img src="./images/musicnn_doc.png" width="700">
