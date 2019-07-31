@@ -14,18 +14,17 @@ def batch_data(audio_file, n_frames, overlap):
     '''For an efficient computation, we split the full music spectrograms in patches of length n_frames with overlap.
 
     INPUT
-
+    
     - file_name: path to the music file to tag.
     Data format: string.
     Example: './audio/TRWJAZW128F42760DD_test.mp3'
 
-    - n_frames: length (in frames) of the input spectrogram patches. Set it small for real-time applications.
-    This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our basic / advanced examples to know more about that.
+    - n_frames: length (in frames) of the input spectrogram patches.
     Data format: integer.
     Example: 187
         
     - overlap: ammount of overlap (in frames) of the input spectrogram patches.
-    Note: Set it considering the input_length.
+    Note: Set it considering n_frames.
     Data format: integer.
     Example: 10
     
@@ -64,7 +63,7 @@ def batch_data(audio_file, n_frames, overlap):
 
 
 def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=False, extract_features=True):
-    '''Extract the taggram (the temporal evolution of tags) and, optionally, the features (intermediate representations of the model) of the music-clip in file_name with the selected model.
+    '''Extract the taggram (the temporal evolution of tags) and features (intermediate representations of the model) of the music-clip in file_name with the selected model.
 
     INPUT
 
@@ -77,11 +76,12 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     Options: 'MTT_musicnn', 'MTT_vgg', 'MSD_musicnn', 'MSD_musicnn_big' or 'MSD_vgg'.
     MTT models are trained with the MagnaTagATune dataset.
     MSD models are trained with the Million Song Dataset.
-    To know more about these models, check our advanced example and FAQs.
+    To know more about these models, check our musicnn / vgg examples, and the FAQs.
     
     - input_length: length (in seconds) of the input spectrogram patches. Set it small for real-time applications.
-    This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram. Check our basic / advanced examples to know more about that.
+    Note: This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram.
     Recommended value: 3, because the models were trained with 3 second inputs.
+    Observation: the vgg models do not allow for different input lengths. For this reason, the vgg models' input_length needs to be set to 3. However, musicnn models allow for different input lengths: see this jupyter notebook.
     Data format: floating point number.
     Example: 3.1
     
@@ -95,7 +95,7 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     Options: False (for NOT extracting the features), True (for extracting the features).
 
     OUTPUT
-
+    
     - taggram: expresses the temporal evolution of the tags likelihood.
     Data format: 2D np.ndarray (time, tags).
     Example: see our basic / advanced examples.
@@ -108,7 +108,8 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     Data format: dictionary.
     Keys (musicnn models): ['timbral', 'temporal', 'cnn1', 'cnn2', 'cnn3', 'mean_pool', 'max_pool', 'penultimate']
     Keys (vgg models): ['pool1', 'pool2', 'pool3', 'pool4', 'pool5']
-    Example: see our musicnn and vgg jupyter notebook examples.
+    Example: see our musicnn and vgg examples.
+
     '''
     
     # select model
