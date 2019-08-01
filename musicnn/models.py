@@ -17,13 +17,17 @@ def define_model(x, is_training, model, num_classes):
         return build_musicnn(x, is_training, num_classes, num_filt_midend=64, num_units_backend=200)
 
     elif model == 'MSD_musicnn_big':
-        # TODO update
-        return build_musicnn(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
+        try:
+            return build_musicnn(x, is_training, num_classes, num_filt_midend=512, num_units_backend=500)
+        except:
+            raise ValueError('MSD_musicnn_big model is only available if you install from source: python setupy.py install')
 
     elif model == 'MSD_vgg':
-        # TODO train
-        return vgg(x, is_training, num_classes, 128)
-    
+        try:
+            return vgg(x, is_training, num_classes, 128)
+        except:
+            raise ValueError('MSD_vgg model is still training... will be available soon! :)')
+            
     else:
         raise ValueError('Model not implemented!')
 
