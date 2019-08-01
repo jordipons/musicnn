@@ -3,5 +3,6 @@ include LICENSE.md
 
 # Include all musicnn/MTT model files
 recursive-include musicnn/MTT *
+recursive-include musicnn/MSD *
 
 
