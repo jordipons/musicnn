@@ -20,7 +20,7 @@ def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overl
     MTT models are trained with the MagnaTagATune dataset.
     MSD models are trained with the Million Song Dataset.
     To know more about these models, check our musicnn / vgg examples, and the FAQs.
-    Important! 'MSD_musicnn_big' is only available if you install from source: python setupy.py install.
+    Important! 'MSD_musicnn_big' is only available if you install from source: python setup.py install.
 
     - topN: extract N most likely tags according to the selected model.
     Data format: integer.
