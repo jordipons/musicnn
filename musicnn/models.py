@@ -199,8 +199,7 @@ def vgg(x, is_training, num_classes, num_filters=32):
                              kernel_size=[3, 3],
                              padding='same',
                              activation=tf.nn.relu,
-                             name='1CNN',
-                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
+                             name='1CNN')
     bn_conv1 = tf.compat.v1.layers.batch_normalization(conv1, training=is_training)
     pool1 = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv1, pool_size=[4, 1], strides=[2, 2])
 
@@ -210,8 +209,7 @@ def vgg(x, is_training, num_classes, num_filters=32):
                              kernel_size=[3, 3],
                              padding='same',
                              activation=tf.nn.relu,
-                             name='2CNN',
-                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
+                             name='2CNN')
     bn_conv2 = tf.compat.v1.layers.batch_normalization(conv2, training=is_training)
     pool2 = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv2, pool_size=[2, 2], strides=[2, 2])
 
@@ -221,8 +219,7 @@ def vgg(x, is_training, num_classes, num_filters=32):
                              kernel_size=[3, 3],
                              padding='same',
                              activation=tf.nn.relu,
-                             name='3CNN',
-                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
+                             name='3CNN')
     bn_conv3 = tf.compat.v1.layers.batch_normalization(conv3, training=is_training)
     pool3 = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv3, pool_size=[2, 2], strides=[2, 2])
 
@@ -232,8 +229,7 @@ def vgg(x, is_training, num_classes, num_filters=32):
                              kernel_size=[3, 3],
                              padding='same',
                              activation=tf.nn.relu,
-                             name='4CNN',
-                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
+                             name='4CNN')
     bn_conv4 = tf.compat.v1.layers.batch_normalization(conv4, training=is_training)
     pool4 = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv4, pool_size=[2, 2], strides=[2, 2])
 
@@ -243,17 +239,15 @@ def vgg(x, is_training, num_classes, num_filters=32):
                              kernel_size=[3, 3], 
                              padding='same', 
                              activation=tf.nn.relu,
-                             name='5CNN', 
-                             kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
+                             name='5CNN')
     bn_conv5 = tf.compat.v1.layers.batch_normalization(conv5, training=is_training)
     pool5 = tf.compat.v1.layers.max_pooling2d(inputs=bn_conv5, pool_size=[4, 4], strides=[4, 4])
 
-    flat_pool5 = tf.contrib.layers.flatten(pool5)
+    flat_pool5 = tf.compat.v1.layers.flatten(pool5)
     do_pool5 = tf.compat.v1.layers.dropout(flat_pool5, rate=0.5, training=is_training)
     output = tf.compat.v1.layers.dense(inputs=do_pool5,
                             activation=None,
-                            units=num_classes,
-                            kernel_initializer=tf.contrib.layers.variance_scaling_initializer())
+                            units=num_classes)
     return output, pool1, pool2, pool3, pool4, pool5   
 
 
