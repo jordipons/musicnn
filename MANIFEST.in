@@ -4,8 +4,6 @@ include LICENSE.md
 # Include all the models files
 recursive-include musicnn/MTT_musicnn *
 recursive-include musicnn/MTT_vgg *
+recursive-include musicnn/MSD_musicnn_big *
 recursive-include musicnn/MSD_musicnn *
 recursive-include musicnn/MSD_vgg *
-
-
-
