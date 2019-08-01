@@ -144,7 +144,7 @@ Predict the `topN` tags of the music-clip in `file_name` with the selected `mode
 `MTT` models are trained with the [MagnaTagATune](https://github.com/keunwoochoi/magnatagatune-list) dataset.  
 `MSD` models are trained with the [Million Song Dataset](https://github.com/jongpillee/music_dataset_split/tree/master/MSD_split).  
 To know more about these models, check our [musicnn](https://github.com/jordipons/musicnn/blob/master/musicnn_example.ipynb) / [vgg](https://github.com/jordipons/musicnn/blob/master/vgg_example.ipynb) examples, and the [FAQs](https://github.com/jordipons/musicnn/blob/master/FAQs.md).  
-*Important!* `MSD_musicnn_big` is only available if you install from source: `python setupy.py install`.
+*Important!* `MSD_musicnn_big` is only available if you install from source: `python setupy.py install`.  
 *Default:* `MTT_musicnn`  
 *Example:* `python -m musicnn.tagger music.mp3 --model MSD_musicnn`  
 - **--topN (-n):** extract N most likely tags according to the selected model.  
