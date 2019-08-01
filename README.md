@@ -8,9 +8,11 @@ Do you have questions? Check the [FAQs](https://github.com/jordipons/musicnn/blo
 ## Installation
 ```pip install musicnn```
 
-or, to get all the documentation (including jupyter notebooks), install from source:
+or, to get bigger models and all the documentation (including jupyter notebooks), install from source:
 
 ``` git clone https://github.com/jordipons/musicnn.git```
+
+``` cd musicnn```
 
 ``` python setup.py install```
 
