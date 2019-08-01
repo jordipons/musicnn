@@ -77,7 +77,7 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     MTT models are trained with the MagnaTagATune dataset.
     MSD models are trained with the Million Song Dataset.
     To know more about these models, check our musicnn / vgg examples, and the FAQs.
-    Important! 'MSD_musicnn_big' is only available if you install from source: python setupy.py install.
+    Important! 'MSD_musicnn_big' is only available if you install from source: python setup.py install.
 
     - input_length: length (in seconds) of the input spectrogram patches. Set it small for real-time applications.
     Note: This is the length of the data that is going to be fed to the model. In other words, this parameter defines the temporal resolution of the taggram.
