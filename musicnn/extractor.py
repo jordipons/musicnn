@@ -149,7 +149,7 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
         saver.restore(sess, os.path.dirname(__file__)+'/'+model+'/') 
     except:
         if model == 'MSD_musicnn_big':
-            raise ValueError('MSD_musicnn_big model is only available if you install from source: python setupy.py install')
+            raise ValueError('MSD_musicnn_big model is only available if you install from source: python setup.py install')
         elif model == 'MSD_vgg':
             raise ValueError('MSD_vgg model is still training... will be available soon! :)')
 
