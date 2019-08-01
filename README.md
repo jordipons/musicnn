@@ -12,8 +12,6 @@ or, to get bigger models and all the documentation (including jupyter notebooks)
 
 ``` git clone https://github.com/jordipons/musicnn.git```
 
-``` cd musicnn```
-
 ``` python setup.py install```
 
 ## Predict tags
