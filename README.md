@@ -12,7 +12,7 @@ or, to get all the documentation (including jupyter notebooks), install from sou
 
 ``` git clone https://github.com/jordipons/musicnn.git```
 
-``` python setupy.py install```
+``` python setup.py install```
 
 ## Predict tags
 
