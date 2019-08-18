@@ -5,7 +5,7 @@ with open('README.md') as file:
 
 setup(
     name='musicnn',
-    version='0.0.4',
+    version='0.1.0',
     description='Pronounced as "musician", musicnn is a set of pre-trained deep convolutional neural networks for music audio tagging',
     author='Jordi Pons',
     url='http://github.com/jordipons/musicnn',
