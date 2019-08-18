@@ -1,16 +1,8 @@
 # Include LICENSE.md
 include LICENSE.md
 
-#Include documentation
-include DOCUMENTATION.md
-include FAQs.md
-include musicnn_example.ipynb
-include vgg_example.ipynb
-include tagging_example.ipynb
-
 # Include all the models files
 recursive-include musicnn/MTT_musicnn *
 recursive-include musicnn/MTT_vgg *
 recursive-include musicnn/MSD_musicnn *
-recursive-include musicnn/MSD_musicnn_big *
 recursive-include musicnn/MSD_vgg *
