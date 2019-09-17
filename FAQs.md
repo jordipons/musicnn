@@ -43,4 +43,13 @@ If you are using it for academic works, please cite us:
 }
 
 ```
+```
+@inproceedings{pons2019musicnn,
+  title={musicnn: pre-trained convolutional neural networks for music audio tagging},
+  author={Pons, Jordi and Serra, Xavier},
+  booktitle={Late-breaking/demo session in 20th International Society for Music Information Retrieval Conference (LBD-ISMIR2019)},
+  year={2019},
+}
+
+```
 If you use it for other purposes, let us know!
