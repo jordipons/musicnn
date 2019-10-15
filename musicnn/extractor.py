@@ -213,7 +213,7 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     	        features['pool4'] = np.concatenate((features['pool4'], np.squeeze(pool4_)), axis=0)
     	        features['pool5'] = np.concatenate((features['pool5'], np.squeeze(pool5_)), axis=0)
     	    else:
-    	        predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, mean_pool_, max_pool_, backend_ = tf_out
+    	        predicted_tags, timbral_, temporal_, midend1_, midend2_, midend3_, mean_pool_, max_pool_, penultimate_ = tf_out
     	        features['timbral'] = np.concatenate((features['timbral'], np.squeeze(timbral_)), axis=0)
     	        features['temporal'] = np.concatenate((features['temporal'], np.squeeze(temporal_)), axis=0)
     	        features['cnn1'] = np.concatenate((features['cnn1'], np.squeeze(cnn1_)), axis=0)
