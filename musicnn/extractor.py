@@ -48,16 +48,7 @@ def batch_data(audio_file, n_frames, overlap):
     audio_rep = np.log10(10000 * audio_rep + 1)
 
     # batch it for an efficient computing
-    first = True
-    last_frame = audio_rep.shape[0] - n_frames + 1
-    # +1 is to include the last frame that range would not include
-    for time_stamp in range(0, last_frame, overlap):
-        patch = np.expand_dims(audio_rep[time_stamp : time_stamp + n_frames, : ], axis=0)
-        if first:
-            batch = patch
-            first = False
-        else:
-            batch = np.concatenate((batch, patch), axis=0)
+    batch = librosa.util.frame(np.ascontiguousarray(audio_rep), frame_length=n_frames, hop_length=overlap, axis=0)
 
     return batch, audio_rep
 
