@@ -71,10 +71,10 @@ def top_tags(file_name, model='MTT_musicnn', topN=3, input_length=3, input_overl
         topN_tags.append(tags[tag_index])
 
         if print_tags:
-            print(' - ' + tags[tag_index])
+            print(' - ' + tags[tag_index]+ ', likelihood: ' + '%.3f' % tags_likelihood_mean[tags_index])
 
         if save_tags:
-            to.write(',' + tags[tag_index])
+            to.write(',' + tags[tag_index]+ ', likelihood: ' + '%.3f' % tags_likelihood_mean[tags_index])
 
     if save_tags:
         to.write('\n')
