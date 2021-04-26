@@ -115,9 +115,9 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     
     # select model
     if 'MTT' in model:
-        labels = config.MTT_LABELS
+        labels = config.MTT_LABELS.copy()
     elif 'MSD' in model:
-        labels = config.MSD_LABELS
+        labels = config.MSD_LABELS.copy()
     num_classes = len(labels)
     
     if 'vgg' in model and input_length != 3:
