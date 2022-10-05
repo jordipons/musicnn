@@ -50,7 +50,7 @@ You can also compute the taggram using **python** (see our [basic](https://githu
 
 ~~~~python
 from musicnn.extractor import extractor
-taggram, tags = extractor('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT_musicnn')
+taggram, tags = extractor('./audio/joram-moments_of_clarity-08-solipsism-59-88.mp3', model='MTT_musicnn', extract_features=False)
 ~~~~
 ![Taggram](./images/taggram.png "Taggram")
 
