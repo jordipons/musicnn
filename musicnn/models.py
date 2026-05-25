@@ -36,6 +36,14 @@ def build_musicnn(x, is_training, num_classes, num_filt_frontend=1.6, num_filt_m
     ### mid-end ### dense layers
     midend_features_list = midend(frontend_features, is_training, num_filt_midend)
     # dense connection: concatnate features coming from different layers of the front- and mid-end
+    
+    print("\nSHAPE")
+    print(frontend_features.shape)
+    print("\n\n\n")
+
+    print("\nSHAPE")
+    for i in midend_features_list:
+        print(i.shape)
     midend_features = tf.concat(midend_features_list, 2)
 
     ### back-end ### temporal pooling

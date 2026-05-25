@@ -3,6 +3,7 @@ import numpy as np
 import librosa
 
 import tensorflow as tf
+
 # disable eager mode for tf.v1 compatibility with tf.v2
 tf.compat.v1.disable_eager_execution()
 
@@ -10,56 +11,6 @@ from musicnn import models
 from musicnn import configuration as config
 
 
-def batch_data(audio_file, n_frames, overlap):
-    '''For an efficient computation, we split the full music spectrograms in patches of length n_frames with overlap.
-
-    INPUT
-    
-    - file_name: path to the music file to tag.
-    Data format: string.
-    Example: './audio/TRWJAZW128F42760DD_test.mp3'
-
-    - n_frames: length (in frames) of the input spectrogram patches.
-    Data format: integer.
-    Example: 187
-        
-    - overlap: ammount of overlap (in frames) of the input spectrogram patches.
-    Note: Set it considering n_frames.
-    Data format: integer.
-    Example: 10
-    
-    OUTPUT
-    
-    - batch: batched audio representation. It returns spectrograms split in patches of length n_frames with overlap.
-    Data format: 3D np.array (batch, time, frequency)
-    
-    - audio_rep: raw audio representation (spectrogram).
-    Data format: 2D np.array (time, frequency)
-    '''
-
-    # compute the log-mel spectrogram with librosa
-    audio, sr = librosa.load(audio_file, sr=config.SR)
-    audio_rep = librosa.feature.melspectrogram(y=audio, 
-                                               sr=sr,
-                                               hop_length=config.FFT_HOP,
-                                               n_fft=config.FFT_SIZE,
-                                               n_mels=config.N_MELS).T
-    audio_rep = audio_rep.astype(np.float16)
-    audio_rep = np.log10(10000 * audio_rep + 1)
-
-    # batch it for an efficient computing
-    first = True
-    last_frame = audio_rep.shape[0] - n_frames + 1
-    # +1 is to include the last frame that range would not include
-    for time_stamp in range(0, last_frame, overlap):
-        patch = np.expand_dims(audio_rep[time_stamp : time_stamp + n_frames, : ], axis=0)
-        if first:
-            batch = patch
-            first = False
-        else:
-            batch = np.concatenate((batch, patch), axis=0)
-
-    return batch, audio_rep
 
 
 def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=False, extract_features=True):
@@ -230,8 +181,6 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     sess.close()
     print('done!')
 
-
-    print(taggram)
     if extract_features:
         return taggram, labels, features
     else:

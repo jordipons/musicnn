@@ -3,11 +3,9 @@ import numpy as np
 import librosa
 
 import tensorflow as tf
-# disable eager mode for tf.v1 compatibility with tf.v2
-tf.compat.v1.disable_eager_execution()
 
-from musicnn import models
-from musicnn import configuration as config
+from musicnn.v2 import models
+from musicnn.v2 import configuration as config
 
 
 def batch_data(audio_file, n_frames, overlap):
@@ -131,31 +129,63 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
         overlap = librosa.time_to_frames(input_overlap, sr=config.SR, n_fft=config.FFT_SIZE, hop_length=config.FFT_HOP)
 
     # tensorflow: define the model
-    tf.compat.v1.reset_default_graph()
-    with tf.name_scope('model'):
-        x = tf.compat.v1.placeholder(tf.float32, [None, n_frames, config.N_MELS])
-        is_training = tf.compat.v1.placeholder(tf.bool)
+
+    with tf.name_scope("model"):
+
+        x = tf.keras.Input(shape=(n_frames, config.N_MELS), dtype=tf.float32, name="x")
+        # is_training = tf.keras.Input(shape=(), dtype=tf.bool, name="is_training")
+
         if 'vgg' in model:
-            y, pool1, pool2, pool3, pool4, pool5 = models.define_model(x, is_training, model, num_classes)
+            y, pool1, pool2, pool3, pool4, pool5 = models.define_model(
+                x, model, num_classes
+            )
         else:
-            y, timbral, temporal, cnn1, cnn2, cnn3, mean_pool, max_pool, penultimate = models.define_model(x, is_training, model, num_classes)
-        normalized_y = tf.nn.sigmoid(y)
+            y, timbral, temporal, cnn1, cnn2, cnn3, mean_pool, max_pool, penultimate = models.define_model(
+                x,  model, num_classes
+            )
+
+        normalized_y = tf.keras.layers.Activation("sigmoid")(y)
+
+    # Add an output layer to y, or to penultimate (maybe in define_model?)
 
     # tensorflow: loading model
-    sess = tf.compat.v1.Session()
-    sess.run(tf.compat.v1.global_variables_initializer())
-    saver = tf.compat.v1.train.Saver()
+
+    modelv2 =  tf.keras.Model(inputs=x, outputs=normalized_y, name="modelv2")
+
+
+
     try:
-        saver.restore(sess, os.path.dirname(__file__)+'/'+model+'/') 
-    except:
+        ckpt_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), model)
+        # print(os.path.exists(ckpt_path))   
+
+        ckpt_path = f"{ckpt_path}/"  
+        modelv2.load_weights(ckpt_path, by_name=True, skip_mismatch=True).expect_partial()
+        
+    except Exception as e:
         if model == 'MSD_musicnn_big':
             raise ValueError('MSD_musicnn_big model is only available if you install from source: python setup.py install')
         elif model == 'MSD_vgg':
             raise ValueError('MSD_vgg model is still training... will be available soon! :)')
+        else:
+            raise e
+    
 
     # batching data
     print('Computing spectrogram (w/ librosa) and tags (w/ tensorflow)..', end =" ")
     batch, spectrogram = batch_data(file_name, n_frames, overlap)
+
+
+
+    tf_out_v2 =  modelv2(batch[:config.BATCH_SIZE])
+    predicted_tags = tf_out_v2
+
+    taggram = np.array(predicted_tags)
+    for id_pointer in range(config.BATCH_SIZE, batch.shape[0], config.BATCH_SIZE):
+        predicted_tags = modelv2(batch[id_pointer:id_pointer+config.BATCH_SIZE])
+        taggram = np.concatenate((taggram, np.array(predicted_tags)), axis=0)
+
+    # print(taggram)
+    return taggram, labels
 
     # tensorflow: extract features and tags
     # ..first batch!
@@ -230,8 +260,6 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
     sess.close()
     print('done!')
 
-
-    print(taggram)
     if extract_features:
         return taggram, labels, features
     else:
