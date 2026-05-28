@@ -1,0 +1,13 @@
+[project]
+name = "musicnn"
+version = "0.1.0"
+description = "musicnn optimization"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "librosa>=0.11.0",
+    "matplotlib>=3.10.9",
+    "numpy>=2.2.6",
+    "tensorflow-model-optimization>=0.8.1",
+    "tensorflow[and-cuda]>=2.21.0",
+]
