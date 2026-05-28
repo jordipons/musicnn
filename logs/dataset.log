@@ -1,0 +1,40 @@
+2026-05-29 00:02:48.345643: I tensorflow/core/util/port.cc:113] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:From C:\Users\micha\Documents\GitHub\musicnn\music_venv\lib\site-packages\keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\layer3.c:INT123_do_layer3():1880] error: part2_3_length (3360) too large for available bit count (3240)
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\parse.c:do_readahead():1123] warning: Cannot read next header, a one-frame stream? Duh...
+C:\Users\micha\Documents\GitHub\musicnn\musicnn\v2\dataset.py:40: UserWarning: PySoundFile failed. Trying audioread instead.
+  audio, sr = librosa.load(audio_file, sr=config.SR)
+C:\Users\micha\Documents\GitHub\musicnn\music_venv\lib\site-packages\librosa\core\audio.py:184: FutureWarning: librosa.core.audio.__audioread_load
+        Deprecated as of librosa version 0.10.0.
+        It will be removed in librosa version 1.0.
+  y, sr_native = __audioread_load(path, offset, duration, dtype)
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\layer3.c:INT123_do_layer3():1948] error: dequantization failed!
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\parse.c:do_readahead():1123] warning: Cannot read next header, a one-frame stream? Duh...
+1: 74.91283917427063s
+2: 82.53426027297974s
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\layer3.c:INT123_do_layer3():1908] error: dequantization failed!
+3: 88.05816125869751s
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\layer3.c:INT123_do_layer3():1908] error: dequantization failed!
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\layer3.c:INT123_do_layer3():1908] error: dequantization failed!
+Note: Illegal Audio-MPEG-Header 0x00000000 at offset 63168.
+Note: Trying to resync...
+Note: Skipped 1024 bytes in input.
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\parse.c:wetwork():1389] error: Giving up resync after 1024 bytes - your stream is not nice... (maybe increasing resync limit could help).
+4: 95.95497274398804s
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\parse.c:do_readahead():1123] warning: Cannot read next header, a one-frame stream? Duh...
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\layer3.c:INT123_do_layer3():1880] error: part2_3_length (3328) too large for available bit count (3240)
+Note: Illegal Audio-MPEG-Header 0x00000000 at offset 22401.
+Note: Trying to resync...
+Note: Skipped 1024 bytes in input.
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\parse.c:wetwork():1389] error: Giving up resync after 1024 bytes - your stream is not nice... (maybe increasing resync limit could help).
+5: 98.42516469955444s
+Note: Illegal Audio-MPEG-Header 0x00000000 at offset 33361.
+Note: Trying to resync...
+Note: Skipped 1024 bytes in input.
+[C:\vcpkg\buildtrees\mpg123\src\-66150af195.clean\src\libmpg123\parse.c:wetwork():1389] error: Giving up resync after 1024 bytes - your stream is not nice... (maybe increasing resync limit could help).
+6: 94.70684814453125s
+y parameters
+shape: (998, 187, 96)
+dtype: float16
+ndim: 3

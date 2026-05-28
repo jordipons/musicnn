@@ -1,8 +1,6 @@
 import tensorflow as tf
 from musicnn.v2 import configuration as config
 
-# disabling deprecation warnings (caused by change from tensorflow 1.x to 2.x)
-tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 
 def define_model(x,  model, num_classes):
@@ -25,7 +23,7 @@ def define_model(x,  model, num_classes):
     elif model == 'GENRES_musicnn':    
         return build_musicnn_fma(x,  num_classes, num_filt_midend=64, num_units_backend=200)
     else:
-        raise ValueError('Model not implemented!')
+        raise ValueError(f'Model {model} not implemented!')
 
 
 

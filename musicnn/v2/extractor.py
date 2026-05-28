@@ -159,7 +159,7 @@ def extractor(file_name, model='MTT_musicnn', input_length=3, input_overlap=Fals
         # print(os.path.exists(ckpt_path))   
 
         ckpt_path = f"{ckpt_path}/"  
-        modelv2.load_weights(ckpt_path, by_name=True, skip_mismatch=True).expect_partial()
+        modelv2.load_weights(ckpt_path).expect_partial()
         
     except Exception as e:
         if model == 'MSD_musicnn_big':
