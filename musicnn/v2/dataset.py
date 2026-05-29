@@ -266,9 +266,9 @@ def augument_training_data(x):
     print(x.shape)
     result = data_augmentation_layers(x)
 
-    def my_time_mask(x):
-        return tfio.audio.time_mask(x, TIME_MAX_MASKED_BAND)
-    result = tf.map_fn(my_time_mask, result)
+    # def my_time_mask(x):
+    #     return tfio.audio.time_mask(x, TIME_MAX_MASKED_BAND)
+    # result = tf.map_fn(my_time_mask, result)
     
     def my_freq_mask(x):
         return tfio.audio.freq_mask(x, FREQ_MAX_MASKED_BAND)
@@ -277,7 +277,10 @@ def augument_training_data(x):
     return result
 
 def get_dataset(all_noise_ratio = None, train_noise_ratio = None, augument_training = False, batch_size = 1):
-    # df = pd.read_csv(f"{config.OUTPUT_DIR}/labels.csv")
+    # all noise ratio takes noisy labels in train, val, test, 
+    # train_noise_ratio  takes noisy trainset
+    # augument_training adds on the fly augumentation
+ 
     if all_noise_ratio is not None and train_noise_ratio is None:
         train_noise_ratio = all_noise_ratio
 
@@ -310,8 +313,8 @@ def get_dataset(all_noise_ratio = None, train_noise_ratio = None, augument_train
 
 
 import matplotlib.pyplot as plt
-def visualize_dataset():
-    train, val, test = get_dataset(augument_training=True)
+def visualize_dataset(augument_training=False):
+    train, val, test = get_dataset(augument_training=augument_training)
     import tensorflow as tf
 
     for mel, label in train.take(1):
