@@ -4,7 +4,10 @@ import fma.utils as utils
 import sklearn as skl
 import tensorflow as tf
 import pandas as pd
-import logging
+import glob
+import time
+import random
+import re
 from musicnn.v2 import configuration as config
 
 
@@ -65,8 +68,7 @@ def batch_data(audio_file, n_frames, overlap):
 
 
 def create_melspectrogram_dataset(tracks, subdir_name, directory, OUTPUT_DIR, AUDIO_DIR, whole_track=False):
-    import time
-    import random
+
 
     label_to_id = {name: i for i, name in enumerate(config.GENRES_LABELS)}
 
@@ -80,9 +82,13 @@ def create_melspectrogram_dataset(tracks, subdir_name, directory, OUTPUT_DIR, AU
     saved_batches = None
     saved_y = None
 
+
+
+
     def save_dataset_shard():
         output_filename = f"{OUTPUT_DIR}/{subdir_name}/X_{saved_batches_num:06d}.npy"
         np.save(output_filename, saved_batches)
+
         output_filename = f"{OUTPUT_DIR}/{subdir_name}/y_{saved_batches_num:06d}.npy"
         np.save(output_filename, saved_y)
 
@@ -170,12 +176,47 @@ def create_fma_dataset():
     # scaler.transform(X_test)
 
 
-def get_dataset_slice(slice_name):
+def add_label_noise(noisy_labels_ratio, labels):
+    # print("--------------")
+    # print(np.unique(labels, return_counts=True))
+    if noisy_labels_ratio>0:
+        idx = list(range(len(labels)))
+        random.seed(42)
+        random.shuffle(idx)
+        num_noise = int(noisy_labels_ratio*len(labels))
+        noise_idx = idx[:num_noise]
+        for i in range(len(labels)):
+            if i in noise_idx:
+                noiselabel = random.randint(0, len(config.GENRES_LABELS))
+                labels[i] = noiselabel
+    # print(np.unique(labels, return_counts=True))
+    # print("--------------")
 
 
-    import glob
+
+def add_noise_to_fma_dataset(noisy_labels_ratio=0):
+    y_files = glob.glob(f"{config.OUTPUT_DIR}/*/y_*.npy")
+    for y_file in y_files:
+        labels = np.load(y_file)
+        add_label_noise(noisy_labels_ratio, labels)
+        new_filename = re.sub(r"y_(\d+)\.npy$", rf"ynoisy{int(noisy_labels_ratio * 100)}_\1.npy", y_file)
+        np.save(new_filename, labels)
+
+
+
+
+
+def get_dataset_slice(slice_name, noise_ratio=None):
+
+    noise_filename_part=""
+    if noise_ratio is not None:
+        if noise_ratio <=1:
+            noise_ratio = int(100 * noise_ratio)
+        noise_filename_part = f"noisy{noise_ratio}"
+
+
     x_files = sorted(glob.glob(f"{config.OUTPUT_DIR}/{slice_name}/X_*.npy"))
-    y_files = sorted(glob.glob(f"{config.OUTPUT_DIR}/{slice_name}/y_*.npy"))
+    y_files = sorted(glob.glob(f"{config.OUTPUT_DIR}/{slice_name}/y{noise_filename_part}_*.npy"))
 
     def load_shard(x_path, y_path):
         x = np.load(x_path.decode("utf-8")).astype(np.float16)
@@ -203,11 +244,11 @@ def get_dataset_slice(slice_name):
 
 
 
-def get_dataset():
+def get_dataset(noise_ratio = None):
     # df = pd.read_csv(f"{config.OUTPUT_DIR}/labels.csv")
-    train_ds = get_dataset_slice("train")
-    val_ds = get_dataset_slice("val")
-    test_ds = get_dataset_slice("test")
+    train_ds = get_dataset_slice("train", noise_ratio)
+    val_ds = get_dataset_slice("val", noise_ratio)
+    test_ds = get_dataset_slice("test", noise_ratio)
 
     
     train_ds = (
