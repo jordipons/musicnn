@@ -105,19 +105,20 @@ def retrain(model_name='GENRES_MTT_musicnn', extract_features=True):
         outputs=outputs
     )
 
-    train_ds, val_ds, test_ds = get_dataset()
+    train_ds, val_ds, test_ds = get_dataset(augument_training=True)
     modelv2.compile(optimizer='adam',
               loss=keras.losses.SparseCategoricalCrossentropy(from_logits=False),
               metrics=['accuracy'])
     
     modelv2.summary()
 
-    print(modelv2.evaluate(train_ds))
+    print(modelv2.evaluate(test_ds))
     modelv2.fit(
         train_ds,
-        epochs=8
+        epochs=2
     )
-    # print(modelv2.evaluate(test_ds))
+    print(modelv2.evaluate(test_ds))
+
 
     
     

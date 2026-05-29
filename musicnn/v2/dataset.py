@@ -4,7 +4,11 @@ import fma.utils as utils
 import sklearn as skl
 import tensorflow as tf
 import pandas as pd
-import logging
+import glob
+import time
+import random
+import re
+import tensorflow_io as tfio
 from musicnn.v2 import configuration as config
 
 
@@ -65,8 +69,7 @@ def batch_data(audio_file, n_frames, overlap):
 
 
 def create_melspectrogram_dataset(tracks, subdir_name, directory, OUTPUT_DIR, AUDIO_DIR, whole_track=False):
-    import time
-    import random
+
 
     label_to_id = {name: i for i, name in enumerate(config.GENRES_LABELS)}
 
@@ -80,9 +83,13 @@ def create_melspectrogram_dataset(tracks, subdir_name, directory, OUTPUT_DIR, AU
     saved_batches = None
     saved_y = None
 
+
+
+
     def save_dataset_shard():
         output_filename = f"{OUTPUT_DIR}/{subdir_name}/X_{saved_batches_num:06d}.npy"
         np.save(output_filename, saved_batches)
+
         output_filename = f"{OUTPUT_DIR}/{subdir_name}/y_{saved_batches_num:06d}.npy"
         np.save(output_filename, saved_y)
 
@@ -170,13 +177,58 @@ def create_fma_dataset():
     # scaler.transform(X_test)
 
 
-def get_dataset_slice(slice_name):
+def add_label_noise(noisy_labels_ratio, labels):
+    # print("--------------")
+    # print(np.unique(labels, return_counts=True))
+    if noisy_labels_ratio>0:
+        idx = list(range(len(labels)))
+        random.seed(42)
+        random.shuffle(idx)
+        num_noise = int(noisy_labels_ratio*len(labels))
+        noise_idx = idx[:num_noise]
+        for i in range(len(labels)):
+            if i in noise_idx:
+                noiselabel = random.randint(0, len(config.GENRES_LABELS))
+                labels[i] = noiselabel
+    # print(np.unique(labels, return_counts=True))
+    # print("--------------")
 
 
-    import glob
+
+def add_noise_to_fma_dataset(noisy_labels_ratio=0):
+    y_files = glob.glob(f"{config.OUTPUT_DIR}/*/y_*.npy")
+    for y_file in y_files:
+        labels = np.load(y_file)
+        add_label_noise(noisy_labels_ratio, labels)
+        new_filename = re.sub(r"y_(\d+)\.npy$", rf"ynoisy{int(noisy_labels_ratio * 100)}_\1.npy", y_file)
+        np.save(new_filename, labels)
+
+
+
+def get_dataset_slice_files(slice_name, noise_ratio=None):
+    noise_filename_part=""
+    if noise_ratio is not None:
+        if noise_ratio <=1:
+            noise_percent = int(100 * noise_ratio)
+        else:
+            noise_percent = noise_ratio
+        noise_filename_part = f"noisy{noise_percent}"
+
     x_files = sorted(glob.glob(f"{config.OUTPUT_DIR}/{slice_name}/X_*.npy"))
-    y_files = sorted(glob.glob(f"{config.OUTPUT_DIR}/{slice_name}/y_*.npy"))
+    y_files = sorted(glob.glob(f"{config.OUTPUT_DIR}/{slice_name}/y{noise_filename_part}_*.npy"))
+    if len(y_files) == 0:
+        add_noise_to_fma_dataset(noise_ratio)
+        y_files = sorted(glob.glob(f"{config.OUTPUT_DIR}/{slice_name}/y{noise_filename_part}_*.npy"))
+    
+    return x_files, y_files
 
+
+def get_dataset_slice(slice_name, noise_ratio=None):
+
+
+    x_files, y_files = get_dataset_slice_files(slice_name, noise_ratio)
+    print(slice_name)
+    print(y_files)
     def load_shard(x_path, y_path):
         x = np.load(x_path.decode("utf-8")).astype(np.float16)
         y = np.load(y_path.decode("utf-8"))
@@ -203,28 +255,89 @@ def get_dataset_slice(slice_name):
 
 
 
-def get_dataset():
+
+data_augmentation_layers = tf.keras.Sequential([
+            tf.keras.layers.RandomTranslation(0, 0.5, fill_mode="wrap", seed=42),
+        ])
+
+def augument_training_data(x):
+    TIME_MAX_MASKED_BAND = 50
+    FREQ_MAX_MASKED_BAND = 20
+    print(x.shape)
+    result = data_augmentation_layers(x)
+
+    def my_time_mask(x):
+        return tfio.audio.time_mask(x, TIME_MAX_MASKED_BAND)
+    result = tf.map_fn(my_time_mask, result)
+    
+    def my_freq_mask(x):
+        return tfio.audio.freq_mask(x, FREQ_MAX_MASKED_BAND)
+    result = tf.map_fn(my_freq_mask, result)
+    
+    return result
+
+def get_dataset(all_noise_ratio = None, train_noise_ratio = None, augument_training = False, batch_size = 1):
     # df = pd.read_csv(f"{config.OUTPUT_DIR}/labels.csv")
-    train_ds = get_dataset_slice("train")
-    val_ds = get_dataset_slice("val")
-    test_ds = get_dataset_slice("test")
+    if all_noise_ratio is not None and train_noise_ratio is None:
+        train_noise_ratio = all_noise_ratio
+
+    train_ds = get_dataset_slice("train", train_noise_ratio)
+    val_ds = get_dataset_slice("val", all_noise_ratio)
+    test_ds = get_dataset_slice("test", all_noise_ratio)
 
     
-    train_ds = (
-        train_ds
-        .batch(1)
-        .prefetch(tf.data.AUTOTUNE)
-    )
+    train_ds = train_ds.batch(batch_size)
+
+    if augument_training:
+        train_ds = train_ds.map(lambda x, y: (augument_training_data(x), y), 
+                num_parallel_calls=tf.data.AUTOTUNE)
+        
+    train_ds = train_ds.prefetch(tf.data.AUTOTUNE)
+    
     val_ds = (
         val_ds
-        # .batch(32)
+        .batch(batch_size)
         .prefetch(tf.data.AUTOTUNE)
     )
     test_ds = (
         test_ds
-        # .batch(32)
+        .batch(batch_size)
         .prefetch(tf.data.AUTOTUNE)
     )
     return train_ds, val_ds, test_ds
 
     
+
+
+import matplotlib.pyplot as plt
+def visualize_dataset():
+    train, val, test = get_dataset(augument_training=True)
+    import tensorflow as tf
+
+    for mel, label in train.take(1):
+        break
+
+    print(mel.shape)
+    print(config.GENRES_LABELS[int(label)])
+
+    if len(mel.shape) == 3:
+        mel = tf.squeeze(mel, axis=0)
+
+    plt.figure(figsize=(10, 4))
+
+    time_axis = np.arange(mel.shape[0]) * config.FFT_HOP / config.SR
+
+    plt.imshow(
+        np.transpose(mel),
+        origin="lower",
+        aspect="auto",
+        extent=[0, time_axis[-1], 0, mel.shape[1]]
+    )
+
+    plt.colorbar(label="log-mel intensity")
+    plt.xlabel("Time (s)")
+    plt.ylabel("Mel bins")
+    plt.title("Mel Spectrogram (3 seconds)")
+
+    plt.tight_layout()
+    plt.show()
