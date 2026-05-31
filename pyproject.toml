@@ -5,9 +5,11 @@ description = "musicnn optimization"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "dotenv>=0.9.9",
     "librosa>=0.11.0",
     "matplotlib>=3.10.9",
-    "numpy>=2.2.6",
-    "tensorflow-model-optimization>=0.8.1",
-    "tensorflow[and-cuda]>=2.21.0",
+    "pandas>=2.3.3",
+    "pydot>=4.0.1",
+    "tensorflow-io==0.35.*",
+    "tensorflow[and-cuda]==2.15.*",
 ]
